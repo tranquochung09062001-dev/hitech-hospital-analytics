@@ -1,0 +1,16 @@
+digraph G {
+  rankdir=TB; bgcolor="white"; pad=0.3; nodesep=0.25; ranksep=0.18;
+  node [shape=plaintext, fontname="DejaVu Sans", fontsize=10];
+  t [label=<
+  <table border="0" cellborder="1" cellspacing="0" cellpadding="7" color="#C9D3DE">
+   <tr><td bgcolor="#0B2A4A"><font color="white"><b>#</b></font></td><td bgcolor="#0B2A4A"><font color="white"><b>User feedback on prototype</b></font></td><td bgcolor="#0B2A4A"><font color="white"><b>Root cause</b></font></td><td bgcolor="#0B2A4A"><font color="white"><b>Change made</b></font></td></tr>
+   <tr><td>1</td><td align="left">"Top 10 shows more than 10 customers"</td><td align="left">TopN on name, many duplicate names</td><td align="left">TopN on patient ID</td></tr>
+   <tr><td>2</td><td align="left">"I have to scroll to see visit history"</td><td align="left">Layout</td><td align="left">History table beside Top 10; click a customer to filter it</td></tr>
+   <tr><td>3</td><td align="left">"Source filter changes every chart"</td><td align="left">Slicer filters the whole page</td><td align="left">Disconnected table + TREATAS, only 1 chart reacts</td></tr>
+   <tr><td>4</td><td align="left">"All product groups show the same value"</td><td align="left">CALCULATE overrode the filter</td><td align="left">KEEPFILTERS</td></tr>
+   <tr><td>5</td><td align="left">"% is always 100%"</td><td align="left">ALLSELECTED missed the sort column</td><td align="left">Include sort column</td></tr>
+   <tr><td>6</td><td align="left">"Numbers too long (806,276,350 tr)"</td><td align="left">Unit scaling not applied in visuals</td><td align="left">Dynamic format: million below 1,000 tr, billion above</td></tr>
+   <tr><td>7</td><td align="left">"History table loads slowly"</td><td align="left">Group-by across 3 tables</td><td align="left">Columns moved into the fact table</td></tr>
+   <tr><td>8</td><td align="left">Scheduled run returned 0x1</td><td align="left">Two runs overlapped</td><td align="left">PostgreSQL advisory lock</td></tr>
+  </table>>];
+}

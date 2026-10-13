@@ -1,0 +1,18 @@
+digraph G {
+  rankdir=LR; bgcolor="white"; pad=0.3; nodesep=0.35; ranksep=0.55;
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=11, color="#1F5FAD", fillcolor="#EEF3F9", penwidth=1.4];
+  edge [color="#5A6B7D", penwidth=1.4, fontname="DejaVu Sans", fontsize=9, fontcolor="#5A6B7D"];
+  subgraph cluster_src { label="1. Sources (HIS exports)"; fontname="DejaVu Sans Bold"; fontsize=12; color="#D5DFEB"; style="rounded";
+    k [label="Báo cáo chi tiết\n(exam visits)"]; o [label="Kinhmat.xlsx\n(optical sales)"]; t [label="Thuoc.xlsx\n(pharmacy sales)"]; }
+  subgraph cluster_db { label="2. PostgreSQL  \"Hitech Hospital\""; fontname="DejaVu Sans Bold"; fontsize=12; color="#D5DFEB"; style="rounded";
+    raw [label="raw\nloaded as-is", fillcolor="#F3F6FA"]; stg [label="staging\ncleaned + typed", fillcolor="#E3EEF9"]; dwh [label="dwh\nstar schema\n2 facts · 8 dims", fillcolor="#0B2A4A", fontcolor="white", color="#0B2A4A"]; }
+  subgraph cluster_bi { label="3. Power BI"; fontname="DejaVu Sans Bold"; fontsize=12; color="#D5DFEB"; style="rounded";
+    gw [label="On-premises\nData Gateway"]; svc [label="Power BI Service\nsemantic model"]; rep [label="7-page report\n+ 12 insight cards", fillcolor="#E07B39", fontcolor="white", color="#E07B39"]; }
+  sched [label="Windows Task Scheduler\n05:30 daily", shape=note, fillcolor="#FFF4E8", color="#E07B39"];
+  ref [label="Scheduled refresh\n06:00 daily", shape=note, fillcolor="#FFF4E8", color="#E07B39"];
+  k -> raw; o -> raw; t -> raw;
+  raw -> stg [label="01_clean_raw_kham.sql"]; stg -> dwh [label="upsert / reload"];
+  dwh -> gw -> svc -> rep;
+  sched -> raw [style=dashed, color="#E07B39", label="run_pipeline.py"];
+  ref -> svc [style=dashed, color="#E07B39"];
+}

@@ -1,0 +1,15 @@
+digraph G {
+  rankdir=LR; bgcolor="white"; pad=0.3; nodesep=0.22; ranksep=0.6;
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=10, penwidth=1.3, width=2.4];
+  edge [color="#8EA3B8", penwidth=1.3];
+  subgraph cluster_a { label="Who"; fontname="DejaVu Sans Bold"; color="#D5DFEB"; style=rounded;
+    node [fillcolor="#1F5FAD", fontcolor="white", color="#1F5FAD"];
+    u1 [label="Hospital director"]; u2 [label="Accounting"]; u3 [label="Marketing / partner mgmt"]; u4 [label="Optical counter lead"]; u5 [label="Pharmacy lead"]; u6 [label="Front desk / doctors"]; }
+  subgraph cluster_b { label="What they need to know"; fontname="DejaVu Sans Bold"; color="#D5DFEB"; style=rounded;
+    node [fillcolor="#EEF3F9", color="#1F5FAD"];
+    q1 [label="Are we growing?\nWhich services lead?"]; q2 [label="BHYT vs self-pay,\ndiscounts, cash flow"]; q3 [label="Which source / referrer\nbrings revenue?"]; q4 [label="What sells, to whom?\nExam vs walk-in"]; q5 [label="Drug mix, buyer age,\npayer type"]; q6 [label="A patient's past\nsurgeries & visits"]; }
+  subgraph cluster_c { label="Where in the dashboard"; fontname="DejaVu Sans Bold"; color="#D5DFEB"; style=rounded;
+    node [fillcolor="#0B2A4A", fontcolor="white", color="#0B2A4A"];
+    p1 [label="Tổng quan + Insights"]; p2 [label="Doanh thu khám"]; p3 [label="Cộng tác viên"]; p4 [label="Quầy kính"]; p5 [label="Quầy thuốc"]; p6 [label="Bệnh nhân"]; }
+  u1->q1->p1; u2->q2->p2; u3->q3->p3; u4->q4->p4; u5->q5->p5; u6->q6->p6;
+}

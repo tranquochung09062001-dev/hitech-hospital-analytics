@@ -1,0 +1,11 @@
+digraph G {
+  rankdir=LR; bgcolor="white"; pad=0.3; nodesep=0.3; ranksep=0.35;
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=10.5, color="#1F5FAD", fillcolor="#EEF3F9", penwidth=1.3, height=0.9];
+  edge [color="#5A6B7D", penwidth=1.4];
+  a [label="Evening\nStaff copies new HIS\nexports into D:\\Test\\Data"];
+  b [label="05:30\nTask Scheduler runs\nrun_pipeline.bat\n(~3 min)", fillcolor="#0B2A4A", fontcolor="white"];
+  c [label="05:35\nPostgreSQL dwh\nupdated + log written"];
+  d [label="06:00\nPower BI Service refresh\nthrough the gateway", fillcolor="#E07B39", fontcolor="white", color="#E07B39"];
+  e [label="07:30\nLeaders open the\nup-to-date dashboard", fillcolor="#0E8C8C", fontcolor="white", color="#0E8C8C"];
+  a->b->c->d->e;
+}

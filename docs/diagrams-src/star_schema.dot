@@ -1,0 +1,16 @@
+graph G {
+  layout=neato; overlap=false; splines=true; bgcolor="white"; pad=0.3;
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=10, color="#1F5FAD", fillcolor="#EEF3F9", penwidth=1.3, width=1.9];
+  edge [color="#8EA3B8", penwidth=1.3];
+  fk [label="fact_kham\n1 row = 1 service in 1 visit\nrevenue · discount · BHYT · patient paid", fillcolor="#0B2A4A", fontcolor="white", color="#0B2A4A", pos="0,0!", width=3.1, height=0.9];
+  fb [label="fact_ban_hang\n1 row = 1 item in 1 order\nqty · price · discount · paid", fillcolor="#0E8C8C", fontcolor="white", color="#0E8C8C", pos="7,0!", width=2.9, height=0.9];
+  bn [label="dim_benh_nhan\npatient · spending tier", pos="-3.4,2.2!"];
+  dl [label="dim_dia_ly\nprovince · ward", pos="-4.6,0!"];
+  dv [label="dim_dich_vu\nservice · service group", pos="-3.4,-2.2!"];
+  cd [label="dim_chan_doan\nICD-10 diagnosis", pos="0,-2.8!"];
+  ng [label="dim_nguon_gioi_thieu\nreferral source", pos="0,2.8!"];
+  nd [label="dim_ngay\nshared calendar", pos="3.5,0!", fillcolor="#FFF4E8", color="#E07B39"];
+  sp [label="dim_san_pham\nproduct · group · lens index", pos="7,2.4!"];
+  kh [label="dim_kho\nwarehouse · counter", pos="7,-2.4!"];
+  fk -- bn; bn -- dl; fk -- dl [style=dashed, label=" inactive", fontsize=8, fontcolor="#8EA3B8"]; fk -- dv; fk -- cd; fk -- ng; fk -- nd; fb -- nd; fb -- sp; fb -- kh;
+}

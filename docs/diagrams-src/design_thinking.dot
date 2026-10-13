@@ -1,0 +1,12 @@
+digraph G {
+  rankdir=LR; bgcolor="white"; pad=0.3; nodesep=0.5; ranksep=0.45;
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=10, penwidth=0, width=2.2, height=1.5, fontcolor="white"];
+  edge [color="#5A6B7D", penwidth=1.6];
+  e [label="1. EMPATHIZE\n\nTalk to director,\naccounting, marketing,\noptical & pharmacy\ncounters", fillcolor="#1F5FAD"];
+  d [label="2. DEFINE\n\n'Leaders can't see\nwhere revenue comes\nfrom without days of\nmanual Excel'", fillcolor="#0B2A4A"];
+  i [label="3. IDEATE\n\nExcel vs Power BI,\nHIS export vs DB link,\nhow to join sales\nto visits", fillcolor="#0E8C8C"];
+  p [label="4. PROTOTYPE\n\nStar schema + 7-page\nreport, iterated with\nstaff feedback", fillcolor="#E07B39"];
+  t [label="5. TEST\n\n100% reconciliation,\nrerun = 0 duplicates,\nconcurrency fix,\nuser review", fillcolor="#7A4FB0"];
+  e->d->i->p->t;
+  t->p [label=" feedback loop", fontname="DejaVu Sans", fontsize=9, fontcolor="#5A6B7D", style=dashed, constraint=false];
+}

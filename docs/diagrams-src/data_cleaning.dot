@@ -1,0 +1,30 @@
+digraph G {
+  rankdir=LR; bgcolor="white"; pad=0.3; nodesep=0.2;
+  node [shape=plaintext, fontname="DejaVu Sans", fontsize=10];
+  edge [color="#0E8C8C", penwidth=2, arrowsize=1.1];
+  before [label=<
+  <table border="0" cellborder="1" cellspacing="0" cellpadding="6" color="#C9D3DE">
+   <tr><td colspan="2" bgcolor="#FDECEC"><b>raw (HIS export) — illustrative values</b></td></tr>
+   <tr><td bgcolor="#F3F6FA"><b>Column</b></td><td bgcolor="#F3F6FA"><b>Value</b></td></tr>
+   <tr><td>Điện thoại</td><td>912345678  (float, lost 0)</td></tr>
+   <tr><td>GT</td><td>2.0</td></tr>
+   <tr><td>Tuổi</td><td>"6 tháng"</td></tr>
+   <tr><td>Địa chỉ</td><td>"12 Ngõ A-Phường Láng-Thành phố Hà Nội"</td></tr>
+   <tr><td>Chẩn đoán</td><td>"[H52.1] Cận thị (2 mắt)"</td></tr>
+   <tr><td>Ghi chú</td><td>"BHYT80%+GG"</td></tr>
+   <tr><td>Ngày đăng ký </td><td>header has trailing space</td></tr>
+  </table>>];
+  after [label=<
+  <table border="0" cellborder="1" cellspacing="0" cellpadding="6" color="#C9D3DE">
+   <tr><td colspan="2" bgcolor="#E3F4F4"><b>staging / dwh</b></td></tr>
+   <tr><td bgcolor="#F3F6FA"><b>Column</b></td><td bgcolor="#F3F6FA"><b>Value</b></td></tr>
+   <tr><td>dien_thoai</td><td>0912345678</td></tr>
+   <tr><td>gioi_tinh</td><td>Nữ</td></tr>
+   <tr><td>tuoi / nhom_tuoi</td><td>0 / 0-5</td></tr>
+   <tr><td>tinh_tp · phuong_xa</td><td>Hà Nội · Phường Láng</td></tr>
+   <tr><td>ma_cd · ten_cd · ghi_chu_cd</td><td>H52.1 · Cận thị · 2 mắt</td></tr>
+   <tr><td>doi_tuong · muc_huong_bhyt</td><td>BHYT · 80</td></tr>
+   <tr><td>Ngày đăng ký</td><td>column name normalised</td></tr>
+  </table>>];
+  before -> after [label="  01_clean_raw_kham.sql\n  + staging scripts", fontname="DejaVu Sans", fontsize=10, fontcolor="#0E8C8C"];
+}
