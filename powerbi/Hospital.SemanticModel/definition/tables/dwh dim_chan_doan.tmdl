@@ -1,0 +1,60 @@
+table 'dwh dim_chan_doan'
+	lineageTag: 518fef3e-8f2b-4cfb-b5b2-4924c9527e0e
+
+	column ma_cd
+		dataType: string
+		lineageTag: 1893c3ef-7934-49c7-8513-29aa9417731d
+		summarizeBy: none
+		sourceColumn: ma_cd
+
+		annotation SummarizationSetBy = Automatic
+
+	column ten_cd
+		dataType: string
+		lineageTag: 45a8ce55-2bde-46e6-b646-ac6cd99fa900
+		summarizeBy: none
+		sourceColumn: ten_cd
+
+		annotation SummarizationSetBy = Automatic
+
+	column nhom_icd
+		dataType: string
+		lineageTag: b930acbf-657b-4e25-9bcb-00435dd13704
+		summarizeBy: none
+		sourceColumn: nhom_icd
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4b0ed05c-d12a-4f84-9ad8-dba71aa0d653
+		summarizeBy: none
+		sourceColumn: load_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column update_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3d1bc751-6ac3-40b8-b3c0-76b15f6ee826
+		summarizeBy: none
+		sourceColumn: update_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dwh dim_chan_doan' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "Hitech Hospital"),
+				    dwh_dim_chan_doan = Source{[Schema="dwh",Item="dim_chan_doan"]}[Data],
+				    // Mã chẩn đoán in hoa: h10 -> H10 (Power BI không phân biệt hoa/thường)
+				    InHoa = Table.TransformColumns(dwh_dim_chan_doan, {{"ma_cd", each Text.Upper(Text.Trim(_)), type text}, {"nhom_icd", each if _ = null then null else Text.Upper(_), type text}}),
+				    // Bỏ mã trùng sau khi in hoa, giữ 1 dòng
+				    KhongTrung = Table.Distinct(InHoa, {"ma_cd"})
+				in
+				    KhongTrung
+
+	annotation PBI_ResultType = Table
+

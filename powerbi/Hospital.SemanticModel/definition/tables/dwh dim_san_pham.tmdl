@@ -1,0 +1,82 @@
+table 'dwh dim_san_pham'
+	lineageTag: 6537de0e-597d-40d3-8706-19348d38c8f6
+
+	column ma_hang
+		dataType: string
+		lineageTag: e4385ca0-9287-40e3-94d8-cbae805823c9
+		summarizeBy: none
+		sourceColumn: ma_hang
+
+		annotation SummarizationSetBy = Automatic
+
+	column ten_hang
+		dataType: string
+		lineageTag: 3c35edb1-54a4-4053-b87d-a5a4b09bee0a
+		summarizeBy: none
+		sourceColumn: ten_hang
+
+		annotation SummarizationSetBy = Automatic
+
+	column dvt
+		dataType: string
+		lineageTag: 477d1586-f343-4454-84f3-d20dbfefe08c
+		summarizeBy: none
+		sourceColumn: dvt
+
+		annotation SummarizationSetBy = Automatic
+
+	column loai_quay
+		dataType: string
+		lineageTag: 7fe984c0-eb06-4ff9-af8a-2259969cf245
+		summarizeBy: none
+		sourceColumn: loai_quay
+
+		annotation SummarizationSetBy = Automatic
+
+	column nhom_hang
+		dataType: string
+		lineageTag: 2bc68d44-2077-441f-9854-708add1b330e
+		summarizeBy: none
+		sourceColumn: nhom_hang
+
+		annotation SummarizationSetBy = Automatic
+
+	column chiet_suat
+		dataType: double
+		lineageTag: 84cc199b-0392-4b09-88f9-e076e4d58e9b
+		summarizeBy: none
+		sourceColumn: chiet_suat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column load_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b53908ad-a749-4075-9049-b17b39ea5734
+		summarizeBy: none
+		sourceColumn: load_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column update_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 538e2837-aeea-47f4-8178-b730b9525795
+		summarizeBy: none
+		sourceColumn: update_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dwh dim_san_pham' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "Hitech Hospital"),
+				    dwh_dim_san_pham = Source{[Schema="dwh",Item="dim_san_pham"]}[Data]
+				in
+				    dwh_dim_san_pham
+
+	annotation PBI_ResultType = Table
+

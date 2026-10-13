@@ -1,0 +1,209 @@
+table 'dwh fact_ban_hang'
+	lineageTag: 90aca879-7413-4e9f-94dc-f933eba6384b
+
+	column fact_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5decc768-d16b-49d8-ba6e-3a2aa74ea0a7
+		summarizeBy: sum
+		sourceColumn: fact_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ma_don
+		dataType: string
+		lineageTag: 74603752-7c04-47c8-bdfa-26cfdc7da5fa
+		summarizeBy: none
+		sourceColumn: ma_don
+
+		annotation SummarizationSetBy = Automatic
+
+	column ma_kh
+		dataType: int64
+		formatString: 0
+		lineageTag: ec2072c8-7a67-49dc-b252-3ad56980402f
+		summarizeBy: sum
+		sourceColumn: ma_kh
+
+		annotation SummarizationSetBy = Automatic
+
+	column ten_kh
+		dataType: string
+		lineageTag: d3943a23-6111-4e5f-9a8e-a99e3b834e3e
+		summarizeBy: none
+		sourceColumn: ten_kh
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 146a6b63-ad14-4fe3-a379-246aaa6ce83b
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ngay
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1d64f432-a79a-464b-84e1-ff23e75ac4c3
+		summarizeBy: none
+		sourceColumn: ngay
+
+		annotation SummarizationSetBy = Automatic
+
+	column ma_hang
+		dataType: string
+		lineageTag: f929bfeb-5f09-437e-9e65-3254375e2afe
+		summarizeBy: none
+		sourceColumn: ma_hang
+
+		annotation SummarizationSetBy = Automatic
+
+	column kho_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 83081ff1-ecc7-4dce-9321-3b51edf1a501
+		summarizeBy: none
+		sourceColumn: kho_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column stt_trong_don
+		dataType: int64
+		formatString: 0
+		lineageTag: 346c5bf9-a40d-4a0a-8d27-401068c403c9
+		summarizeBy: sum
+		sourceColumn: stt_trong_don
+
+		annotation SummarizationSetBy = Automatic
+
+	column so_luong
+		dataType: double
+		lineageTag: 03e6dd57-0bb5-4925-9faa-7ee843ae7d12
+		summarizeBy: sum
+		sourceColumn: so_luong
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column don_gia
+		dataType: double
+		formatString: #,0
+		lineageTag: 231fad00-761d-4f58-83ca-563cd1c8bc67
+		summarizeBy: sum
+		sourceColumn: don_gia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tien_ban
+		dataType: double
+		formatString: #,0
+		lineageTag: 4fab1088-bf3e-43b2-9945-f5c4d74e7324
+		summarizeBy: sum
+		sourceColumn: tien_ban
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tien_giam
+		dataType: double
+		formatString: #,0
+		lineageTag: bde233a2-2f28-447a-a631-7ad379f7910f
+		summarizeBy: sum
+		sourceColumn: tien_giam
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tien_thu
+		dataType: double
+		formatString: #,0
+		lineageTag: 0ade16ea-0fdc-4a43-82dd-a7ac22d40cfe
+		summarizeBy: sum
+		sourceColumn: tien_thu
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tien_vat
+		dataType: double
+		formatString: #,0
+		lineageTag: b963854d-e877-4c5b-9f9c-ecd519c1c7b0
+		summarizeBy: sum
+		sourceColumn: tien_vat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column load_date
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 0c758da3-e336-487b-b15a-b2cfba6cd6cd
+		summarizeBy: none
+		sourceColumn: load_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column tuoi_kh =
+			VAR ns = LOOKUPVALUE('dwh dim_benh_nhan'[nam_sinh], 'dwh dim_benh_nhan'[ho_ten], 'dwh fact_ban_hang'[ten_kh], BLANK())
+			RETURN IF(ISBLANK(ns) || ns < 1900, BLANK(), YEAR('dwh fact_ban_hang'[ngay]) - ns)
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2694503a-5c4d-4c48-82e1-8bec2cc6aa31
+		summarizeBy: none
+
+	column nhom_tuoi_kh_sort =
+			VAR t = 'dwh fact_ban_hang'[tuoi_kh]
+			RETURN SWITCH(TRUE(), ISBLANK(t), 7, t <= 5, 1, t <= 15, 2, t <= 25, 3, t <= 40, 4, t <= 60, 5, 6)
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 74f1dce7-0f50-44c5-a4bc-a579a3bcf9ce
+		summarizeBy: none
+
+	column nhom_tuoi_kh = SWITCH('dwh fact_ban_hang'[nhom_tuoi_kh_sort], 1, "0-5", 2, "6-15", 3, "16-25", 4, "26-40", 5, "41-60", 6, "60+", "Chưa xác định")
+		dataType: string
+		lineageTag: adb0db14-aa1f-4262-8d2b-9ce2fe545444
+		summarizeBy: none
+		sortByColumn: nhom_tuoi_kh_sort
+
+	column doi_tuong_kham =
+			VAR ten = 'dwh fact_ban_hang'[ten_kh]
+			VAR dk = 'dwh fact_ban_hang'[date_key]
+			VAR nv = CALCULATE(COUNTROWS('dwh fact_kham'), REMOVEFILTERS('dwh fact_ban_hang'), 'dwh fact_kham'[date_key] = dk, 'dwh dim_benh_nhan'[ho_ten] = ten)
+			VAR bh = CALCULATE(COUNTROWS('dwh fact_kham'), REMOVEFILTERS('dwh fact_ban_hang'), 'dwh fact_kham'[date_key] = dk, 'dwh dim_benh_nhan'[ho_ten] = ten, 'dwh fact_kham'[doi_tuong] = "BHYT" || 'dwh fact_kham'[muc_huong_bhyt] > 0)
+			RETURN IF(NOT (nv > 0), "Không khám (mua lẻ)", IF(bh > 0, "BHYT", "Viện phí"))
+		dataType: string
+		lineageTag: f73cfa74-5235-425d-ba56-d77786652942
+		summarizeBy: none
+
+	column loai_khach = IF('dwh fact_ban_hang'[doi_tuong_kham] = "Không khám (mua lẻ)", "Khách lẻ", "Có khám")
+		dataType: string
+		lineageTag: 2b4d6eac-d998-4a65-a417-47c31bc748ac
+		summarizeBy: none
+
+	partition 'dwh fact_ban_hang' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "Hitech Hospital"),
+				    dwh_fact_ban_hang = Source{[Schema="dwh",Item="fact_ban_hang"]}[Data]
+				in
+				    dwh_fact_ban_hang
+
+	annotation PBI_ResultType = Table
+

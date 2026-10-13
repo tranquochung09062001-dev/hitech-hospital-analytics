@@ -1,0 +1,26 @@
+table 'Chế độ top'
+	lineageTag: 1202a09e-0f9a-4a17-9303-a847a63e8276
+
+	column 'Chế độ'
+		dataType: string
+		lineageTag: e2f0c64b-6af4-4a82-9992-6b88aed0be8c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Chế độ]
+		sortByColumn: 'Thứ tự'
+
+	column 'Thứ tự'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a1ab550f-618b-4c82-916e-02a1b7c63b87
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Thứ tự]
+
+	partition 'Chế độ top' = calculated
+		mode: import
+		source = DATATABLE("Chế độ", STRING, "Thứ tự", INTEGER, {{"Top 10 cao nhất", 1}, {"Top 10 gói mổ thấp nhất", 2}})
+
+	annotation PBI_Id = 1007f43a520b450e8a079332b00f2a70
+

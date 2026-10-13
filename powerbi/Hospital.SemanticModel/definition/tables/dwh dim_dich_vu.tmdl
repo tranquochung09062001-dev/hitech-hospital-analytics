@@ -1,0 +1,57 @@
+table 'dwh dim_dich_vu'
+	lineageTag: d4727a2a-0905-49e0-9c66-95aed5af8c28
+
+	column dich_vu_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 166acb95-b299-4f9a-bed3-7a730c68b4ac
+		summarizeBy: none
+		sourceColumn: dich_vu_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ten_dich_vu
+		dataType: string
+		lineageTag: edff90fa-a70d-4ff1-997c-bd12ea9b62a9
+		summarizeBy: none
+		sourceColumn: ten_dich_vu
+
+		annotation SummarizationSetBy = Automatic
+
+	column nhom_dich_vu
+		dataType: string
+		lineageTag: 3c31c85f-31eb-48b0-951a-5c9dff924f71
+		summarizeBy: none
+		sourceColumn: nhom_dich_vu
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3b259800-8890-4cc9-906a-fa8aa1ef713d
+		summarizeBy: none
+		sourceColumn: load_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column update_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6e85da6f-4e9a-40f0-a0f2-8bdc2d64fb34
+		summarizeBy: none
+		sourceColumn: update_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dwh dim_dich_vu' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "Hitech Hospital"),
+				    dwh_dim_dich_vu = Source{[Schema="dwh",Item="dim_dich_vu"]}[Data]
+				in
+				    dwh_dim_dich_vu
+
+	annotation PBI_ResultType = Table
+

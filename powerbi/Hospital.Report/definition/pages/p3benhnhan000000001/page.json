@@ -1,0 +1,213 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "p3benhnhan000000001",
+  "displayName": "3. Doanh thu theo bệnh nhân",
+  "displayOption": "FitToWidth",
+  "height": 970,
+  "width": 1280,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F3F6FA'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F3F6FA'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "p3_cd",
+      "target": "p3_nhomct",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_cd",
+      "target": "p3_tinh",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_cd",
+      "target": "p3_tuoi",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_cd",
+      "target": "p3_nhomtuoi",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_cd",
+      "target": "p3b_kpi0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_cd",
+      "target": "p3b_kpi1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_cd",
+      "target": "p3b_kpi2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_cd",
+      "target": "p3b_kpi3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_cd",
+      "target": "p3b_kpi4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_cd",
+      "target": "p3b_kpi5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_skcb",
+      "target": "p3_cd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_skcb",
+      "target": "p3_nhomct",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_skcb",
+      "target": "p3_tinh",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_skcb",
+      "target": "p3_tuoi",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_skcb",
+      "target": "p3_nhomtuoi",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_skcb",
+      "target": "p3b_kpi0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_skcb",
+      "target": "p3b_kpi1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_skcb",
+      "target": "p3b_kpi2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_skcb",
+      "target": "p3b_kpi3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_skcb",
+      "target": "p3b_kpi4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_skcb",
+      "target": "p3b_kpi5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_sbn",
+      "target": "p3_cd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_sbn",
+      "target": "p3_nhomct",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_sbn",
+      "target": "p3_tinh",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_sbn",
+      "target": "p3_tuoi",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_sbn",
+      "target": "p3_nhomtuoi",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_sbn",
+      "target": "p3b_kpi0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_sbn",
+      "target": "p3b_kpi1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_sbn",
+      "target": "p3b_kpi2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_sbn",
+      "target": "p3b_kpi3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_sbn",
+      "target": "p3b_kpi4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_sbn",
+      "target": "p3b_kpi5",
+      "type": "NoFilter"
+    }
+  ]
+}

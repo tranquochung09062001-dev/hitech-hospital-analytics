@@ -1,0 +1,123 @@
+table 'dwh dim_ngay'
+	lineageTag: 03421a48-0380-4747-9ec2-59122aa3c851
+	dataCategory: Time
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 96a4dc9a-5153-4fed-ad4e-e1c18c42980c
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ngay
+		dataType: dateTime
+		isKey
+		formatString: dd/MM/yyyy
+		lineageTag: fff274b0-6a55-4eb4-bf32-b7abb4807e28
+		summarizeBy: none
+		sourceColumn: ngay
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ngay_trong_thang
+		dataType: int64
+		formatString: 0
+		lineageTag: 61836763-95b7-4064-9d82-35100bef97c9
+		summarizeBy: none
+		sourceColumn: ngay_trong_thang
+
+		annotation SummarizationSetBy = Automatic
+
+	column thang
+		dataType: int64
+		formatString: 0
+		lineageTag: 719d7f91-4628-4c68-b0f8-1010aee5d4db
+		summarizeBy: none
+		sourceColumn: thang
+
+		annotation SummarizationSetBy = Automatic
+
+	column ten_thang
+		dataType: string
+		lineageTag: c7917f1f-9c57-484e-a530-83a30a2fbe79
+		summarizeBy: none
+		sourceColumn: ten_thang
+		sortByColumn: thang
+
+		annotation SummarizationSetBy = Automatic
+
+	column quy
+		dataType: int64
+		formatString: 0
+		lineageTag: ce4f4ae7-381d-44f3-8280-1df24f0ce8fb
+		summarizeBy: none
+		sourceColumn: quy
+
+		annotation SummarizationSetBy = Automatic
+
+	column nam
+		dataType: int64
+		formatString: 0
+		lineageTag: a02f0c43-a132-4a75-832d-30804b418137
+		summarizeBy: none
+		sourceColumn: nam
+
+		annotation SummarizationSetBy = Automatic
+
+	column thu_trong_tuan
+		dataType: int64
+		formatString: 0
+		lineageTag: d4588d31-c8dd-47c1-ab11-9f205a4a9b5a
+		summarizeBy: none
+		sourceColumn: thu_trong_tuan
+
+		annotation SummarizationSetBy = Automatic
+
+	column ten_thu
+		dataType: string
+		lineageTag: 1bd77faf-33a6-4e64-bb02-0b2dca5b34b8
+		summarizeBy: none
+		sourceColumn: ten_thu
+		sortByColumn: thu_trong_tuan
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_cuoi_tuan
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0f38e322-ae90-442c-8347-27b57f49b134
+		summarizeBy: none
+		sourceColumn: la_cuoi_tuan
+
+		annotation SummarizationSetBy = Automatic
+
+	column ky_sort = 'dwh dim_ngay'[nam] * 100 + 'dwh dim_ngay'[thang]
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 472b96a8-907a-49b0-99cd-36c48ccaee2a
+		summarizeBy: none
+
+	/// Tháng/năm cho trục thời gian (không gộp các năm)
+	column thang_nam = FORMAT('dwh dim_ngay'[ngay], "MM/yyyy")
+		dataType: string
+		lineageTag: 7fa82e94-3951-4e8e-8c22-fe8b433ae89d
+		summarizeBy: none
+		sortByColumn: ky_sort
+
+	partition 'dwh dim_ngay' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "Hitech Hospital"),
+				    dwh_dim_ngay = Source{[Schema="dwh",Item="dim_ngay"]}[Data]
+				in
+				    dwh_dim_ngay
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,48 @@
+table 'dwh dim_kho'
+	lineageTag: d350627c-c5af-4c38-aaee-5339712e4b26
+
+	column kho_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 65e5d742-880a-403a-85ab-02079c4cbbd8
+		summarizeBy: none
+		sourceColumn: kho_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ten_kho
+		dataType: string
+		lineageTag: f3cf2129-59a8-47d9-8b74-4148bc1a90dd
+		summarizeBy: none
+		sourceColumn: ten_kho
+
+		annotation SummarizationSetBy = Automatic
+
+	column loai_quay
+		dataType: string
+		lineageTag: a33a1b88-8e1c-479f-b95e-268648a6fb70
+		summarizeBy: none
+		sourceColumn: loai_quay
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: afdb1a35-5622-4f7a-88d3-bf7a14dd8bb5
+		summarizeBy: none
+		sourceColumn: load_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dwh dim_kho' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "Hitech Hospital"),
+				    dwh_dim_kho = Source{[Schema="dwh",Item="dim_kho"]}[Data]
+				in
+				    dwh_dim_kho
+
+	annotation PBI_ResultType = Table
+

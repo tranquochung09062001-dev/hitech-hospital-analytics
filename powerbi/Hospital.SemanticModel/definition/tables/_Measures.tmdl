@@ -1,0 +1,860 @@
+/// Bảng chứa các measure của dashboard
+table _Measures
+	lineageTag: 3a9816c4-1663-4d10-a55f-9f30d05f761c
+
+	measure 'DT Khám' = SUM('dwh fact_kham'[doanh_thu_thuan])
+		displayFolder: 1. Doanh thu
+		lineageTag: 39ae36ca-7cbc-4ffd-88d0-e23fd9de7207
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'DT Bán hàng' = CALCULATE(SUM('dwh fact_ban_hang'[tien_thu]), KEEPFILTERS('dwh dim_san_pham'[nhom_hang] <> "Tạm ứng"))
+		displayFolder: 1. Doanh thu
+		lineageTag: 144e5d84-4143-4a7a-9d44-e82eb8445e99
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'DT Kính' = CALCULATE([DT Bán hàng], 'dwh dim_san_pham'[loai_quay] = "Kính")
+		displayFolder: 1. Doanh thu
+		lineageTag: 189ffad3-cebd-4002-bae5-98b1b184ffa7
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'DT Thuốc' = CALCULATE([DT Bán hàng], 'dwh dim_san_pham'[loai_quay] = "Thuốc")
+		displayFolder: 1. Doanh thu
+		lineageTag: b8fa4824-6f9a-4f15-9b28-456696b5c477
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'Tổng DT' = [DT Khám] + [DT Bán hàng]
+		displayFolder: 1. Doanh thu
+		lineageTag: 4b6f685d-c023-4f00-be52-b235534e2a68
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'Tiền tạm ứng kính' = CALCULATE(SUM('dwh fact_ban_hang'[tien_thu]), KEEPFILTERS('dwh dim_san_pham'[nhom_hang] = "Tạm ứng"))
+		displayFolder: 1. Doanh thu
+		lineageTag: 7f5bb07a-e9c1-4bd5-97a2-c6b43ae96be6
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'Tiền BHYT' = SUM('dwh fact_kham'[tien_bhyt])
+		displayFolder: 2. Khám
+		lineageTag: 3fd24b0c-656c-4940-a8ff-fa7c2864a518
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'BN chi trả' = SUM('dwh fact_kham'[bn_chi_tra])
+		displayFolder: 2. Khám
+		lineageTag: 7c156c72-2a1c-4694-8af5-577698e76406
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'Giảm giá khám' = SUM('dwh fact_kham'[giam_gia])
+		displayFolder: 2. Khám
+		lineageTag: 6314b3cd-9728-41d3-9e7c-480504903f17
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'Số lượt khám' = DISTINCTCOUNT('dwh fact_kham'[ma_kcb])
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: a508b3fd-5f51-4d62-b181-63cb344323dd
+
+	measure 'Số bệnh nhân' = DISTINCTCOUNT('dwh fact_kham'[ma_bn])
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: b3cd98e9-9b27-4d36-82fa-3fda2ab3ac01
+
+	measure 'TB mỗi lượt khám' = DIVIDE([DT Khám], [Số lượt khám])
+		displayFolder: 2. Khám
+		lineageTag: 47fbb5b9-1032-423e-a076-8647b14a6837
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'TB mỗi bệnh nhân' = DIVIDE([DT Khám], [Số bệnh nhân])
+		displayFolder: 2. Khám
+		lineageTag: f735268b-30bf-4e31-ba12-97fd80e76a98
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'Số lượt BHYT' = CALCULATE([Số lượt khám], 'dwh fact_kham'[doi_tuong] = "BHYT")
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: ea09cb2f-11bc-44e5-a0b0-9b64c75409b6
+
+	measure '% lượt BHYT' = DIVIDE([Số lượt BHYT], [Số lượt khám])
+		formatString: 0.0%
+		displayFolder: 2. Khám
+		lineageTag: 42abc884-29d4-449f-9f7e-4bc678b04e3d
+
+	measure 'BN quay lại' = COUNTROWS(FILTER(VALUES('dwh fact_kham'[ma_bn]), CALCULATE(DISTINCTCOUNT('dwh fact_kham'[ma_kcb])) >= 2))
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: d1a1ad29-d9f6-48b4-9ebe-97b09ccc4b76
+
+	measure '% BN quay lại' = DIVIDE([BN quay lại], [Số bệnh nhân])
+		formatString: 0.0%
+		displayFolder: 2. Khám
+		lineageTag: bcbd355b-18fc-4a6d-8935-064b30134667
+
+	measure 'Số đơn' = CALCULATE(DISTINCTCOUNT('dwh fact_ban_hang'[ma_don]), KEEPFILTERS('dwh dim_san_pham'[nhom_hang] <> "Tạm ứng"))
+		formatString: #,0
+		displayFolder: 3. Bán hàng
+		lineageTag: 338323dd-82a9-41aa-aec7-53dfde7b90c9
+
+	measure 'Số đơn kính' = CALCULATE([Số đơn], 'dwh dim_san_pham'[loai_quay] = "Kính")
+		formatString: #,0
+		displayFolder: 3. Bán hàng
+		lineageTag: 4fedd142-8e25-4149-b7fa-abd677586937
+
+	measure 'Số đơn thuốc' = CALCULATE([Số đơn], 'dwh dim_san_pham'[loai_quay] = "Thuốc")
+		formatString: #,0
+		displayFolder: 3. Bán hàng
+		lineageTag: 318953d9-9d7b-4fb8-97f3-3a77bca491c6
+
+	measure 'TB mỗi đơn' = DIVIDE([DT Bán hàng], [Số đơn])
+		displayFolder: 3. Bán hàng
+		lineageTag: 35263daa-5fbd-40eb-80b5-7d13c67d9cf5
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'TB mỗi đơn kính' = DIVIDE([DT Kính], [Số đơn kính])
+		displayFolder: 3. Bán hàng
+		lineageTag: 3680d743-d01d-4354-b6a9-acd977ad79b7
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'TB mỗi đơn thuốc' = DIVIDE([DT Thuốc], [Số đơn thuốc])
+		displayFolder: 3. Bán hàng
+		lineageTag: 648c4c94-3eef-4db2-9793-800af4ddb0d1
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'Số lượng bán' = CALCULATE(SUM('dwh fact_ban_hang'[so_luong]), KEEPFILTERS('dwh dim_san_pham'[nhom_hang] <> "Tạm ứng"))
+		formatString: #,0
+		displayFolder: 3. Bán hàng
+		lineageTag: fb29bc87-87bc-4db9-b296-1bfd286fb5f2
+
+	measure 'DT tháng trước' = CALCULATE([Tổng DT], DATEADD('dwh dim_ngay'[ngay], -1, MONTH))
+		displayFolder: 4. So sánh
+		lineageTag: 8c515164-17cc-4de0-94ab-c8563551fcfa
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure '% Tăng trưởng tháng' =
+			VAR lastData =
+			    CALCULATE(MAX('dwh dim_ngay'[ngay]), FILTER(VALUES('dwh dim_ngay'[ngay]), NOT ISBLANK([Tổng DT])))
+			VAR endMonth =
+			    IF(
+			        HASONEVALUE('dwh dim_ngay'[ky_sort]),
+			        MAX('dwh dim_ngay'[ngay]),
+			        IF(lastData = EOMONTH(lastData, 0), lastData, EOMONTH(lastData, -1))
+			    )
+			VAR cur  = CALCULATE([Tổng DT], DATESBETWEEN('dwh dim_ngay'[ngay], EOMONTH(endMonth, -1) + 1, EOMONTH(endMonth, 0)), REMOVEFILTERS('dwh dim_ngay'[ngay], 'dwh dim_ngay'[thang], 'dwh dim_ngay'[ten_thang], 'dwh dim_ngay'[thang_nam], 'dwh dim_ngay'[ky_sort], 'dwh dim_ngay'[quy], 'dwh dim_ngay'[ngay_trong_thang], 'dwh dim_ngay'[thu_trong_tuan], 'dwh dim_ngay'[ten_thu]))
+			VAR prev = CALCULATE([Tổng DT], DATESBETWEEN('dwh dim_ngay'[ngay], EOMONTH(endMonth, -2) + 1, EOMONTH(endMonth, -1)), REMOVEFILTERS('dwh dim_ngay'[ngay], 'dwh dim_ngay'[thang], 'dwh dim_ngay'[ten_thang], 'dwh dim_ngay'[thang_nam], 'dwh dim_ngay'[ky_sort], 'dwh dim_ngay'[quy], 'dwh dim_ngay'[ngay_trong_thang], 'dwh dim_ngay'[thu_trong_tuan], 'dwh dim_ngay'[ten_thu]))
+			RETURN IF(NOT ISBLANK(cur) && NOT ISBLANK(prev), DIVIDE(cur - prev, prev))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 4. So sánh
+		lineageTag: 1592cd61-8ffd-448e-abeb-ca044e1e2b72
+
+	measure 'DT lũy kế năm' = TOTALYTD([Tổng DT], 'dwh dim_ngay'[ngay])
+		displayFolder: 4. So sánh
+		lineageTag: 557c2d0d-a82a-4ca2-a229-78e4010b05ae
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure '% DT Khám' = DIVIDE([DT Khám], [Tổng DT])
+		formatString: 0.0%
+		displayFolder: 4. So sánh
+		lineageTag: 5294c1e3-22dc-4c70-a681-5b8ce864aecf
+
+	measure '% DT Kính' = DIVIDE([DT Kính], [Tổng DT])
+		formatString: 0.0%
+		displayFolder: 4. So sánh
+		lineageTag: df22f650-8563-4251-8c51-d48934c62c37
+
+	measure '% DT Thuốc' = DIVIDE([DT Thuốc], [Tổng DT])
+		formatString: 0.0%
+		displayFolder: 4. So sánh
+		lineageTag: 7f3ce747-f6ce-4278-98e1-887feb770f7a
+
+	/// Tỷ trọng doanh thu khám của dòng hiện tại so với tổng (dùng cho bảng/biểu đồ theo nhóm)
+	measure '% trên tổng (khám)' = DIVIDE([DT Khám], CALCULATE([DT Khám], ALLSELECTED()))
+		formatString: 0.0%
+		displayFolder: 4. So sánh
+		lineageTag: 09aa9c91-f729-4433-b0d0-9d555b169e6c
+
+	measure 'Số ngày có khám' = COUNTROWS(FILTER(VALUES('dwh dim_ngay'[ngay]), CALCULATE(COUNTROWS('dwh fact_kham')) > 0))
+		formatString: #,0
+		isHidden
+		displayFolder: 5. Trung bình
+		lineageTag: e078da75-54ac-49cd-a4a4-b7f73e68c31b
+
+	/// Tổng doanh thu chia số ngày có phát sinh (khám hoặc bán hàng)
+	measure 'TB DT/ngày' = AVERAGEX(FILTER(VALUES('dwh dim_ngay'[ngay]), NOT ISBLANK([Tổng DT])), [Tổng DT])
+		displayFolder: 5. Trung bình
+		lineageTag: 4493a79b-5be4-42e9-b5d0-0950f6c7c419
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'TB DT khám/ngày' = DIVIDE([DT Khám], [Số ngày có khám])
+		displayFolder: 5. Trung bình
+		lineageTag: 8069b7e6-aa74-4276-ad40-6aa8e6a48039
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'TB lượt khám/ngày' = DIVIDE([Số lượt khám], [Số ngày có khám])
+		formatString: #,0.0
+		displayFolder: 5. Trung bình
+		lineageTag: 24db07e0-d810-408f-a0a8-1743cca7e2fb
+
+	/// Trung bình doanh thu mỗi tháng có phát sinh
+	measure 'TB DT/tháng' = AVERAGEX(FILTER(SUMMARIZE('dwh dim_ngay', 'dwh dim_ngay'[nam], 'dwh dim_ngay'[thang]), NOT ISBLANK([Tổng DT])), [Tổng DT])
+		displayFolder: 5. Trung bình
+		lineageTag: 0a1b57b7-1163-47bd-add8-346f6d8cc023
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'TB lượt khám/tháng' = AVERAGEX(FILTER(SUMMARIZE('dwh dim_ngay', 'dwh dim_ngay'[nam], 'dwh dim_ngay'[thang]), NOT ISBLANK([Số lượt khám])), [Số lượt khám])
+		formatString: #,0
+		displayFolder: 5. Trung bình
+		lineageTag: 49573dcd-e797-471a-bb1c-6407251628ef
+
+	measure 'TB BN chi trả/lượt' = DIVIDE([BN chi trả], [Số lượt khám])
+		displayFolder: 5. Trung bình
+		lineageTag: 25f58805-f20c-4dc8-b74d-c5a78cdb87a3
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'TB BN chi trả/bệnh nhân' = DIVIDE([BN chi trả], [Số bệnh nhân])
+		displayFolder: 5. Trung bình
+		lineageTag: fa37963f-8a87-431c-898f-aada986b4e6f
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'TB tiền BHYT/lượt BHYT' = DIVIDE([Tiền BHYT], [Số lượt BHYT])
+		displayFolder: 5. Trung bình
+		lineageTag: fcf5e673-3ff0-4080-bb70-a29d4c1ba89e
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'TB giảm giá/lượt' = DIVIDE([Giảm giá khám], [Số lượt khám])
+		displayFolder: 5. Trung bình
+		lineageTag: 556ae718-4c57-497d-86e2-0dcfb1d52c15
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'TB số lượt/bệnh nhân' = DIVIDE([Số lượt khám], [Số bệnh nhân])
+		formatString: #,0.00
+		displayFolder: 5. Trung bình
+		lineageTag: c5012257-96e6-49cf-adfc-632e9bbf0c35
+
+	/// Số dịch vụ trung bình trong 1 lượt khám
+	measure 'TB dịch vụ/lượt' = DIVIDE(COUNTROWS('dwh fact_kham'), [Số lượt khám])
+		formatString: #,0.00
+		displayFolder: 5. Trung bình
+		lineageTag: 7c52137e-ee12-4640-84c4-8506434992ec
+
+	/// Tuổi trung bình tính theo lượt khám
+	measure 'TB tuổi' = AVERAGEX(SUMMARIZE('dwh fact_kham', 'dwh fact_kham'[ma_kcb], "t", MAX('dwh fact_kham'[tuoi])), [t])
+		formatString: #,0.0
+		displayFolder: 5. Trung bình
+		lineageTag: 1b5498f9-0b52-43e3-bb5a-76a410a7ec5b
+
+	measure 'TB mặt hàng/đơn' = DIVIDE(CALCULATE(COUNTROWS('dwh fact_ban_hang'), KEEPFILTERS('dwh dim_san_pham'[nhom_hang] <> "Tạm ứng")), [Số đơn])
+		formatString: #,0.00
+		displayFolder: 5. Trung bình
+		lineageTag: 895f0410-621c-4832-a879-aa7fc78b1771
+
+	measure 'TB đơn/ngày' = AVERAGEX(FILTER(VALUES('dwh dim_ngay'[ngay]), [Số đơn] > 0), [Số đơn])
+		formatString: #,0.0
+		displayFolder: 5. Trung bình
+		lineageTag: edc0a8df-7cb2-43b9-b567-8a615afc6fa6
+
+	measure 'Kỳ tăng trưởng' =
+			VAR lastData =
+			    CALCULATE(MAX('dwh dim_ngay'[ngay]), FILTER(VALUES('dwh dim_ngay'[ngay]), NOT ISBLANK([Tổng DT])))
+			VAR endMonth =
+			    IF(
+			        HASONEVALUE('dwh dim_ngay'[ky_sort]),
+			        MAX('dwh dim_ngay'[ngay]),
+			        IF(lastData = EOMONTH(lastData, 0), lastData, EOMONTH(lastData, -1))
+			    )
+			RETURN "T" & FORMAT(endMonth, "MM/yyyy") & " so với T" & FORMAT(EOMONTH(endMonth, -1), "MM/yyyy")
+		displayFolder: 4. So sánh
+		lineageTag: 3ff0e2cd-c709-4429-8e1d-8ee28725eea3
+
+	measure 'Khám (tr₫)' = DIVIDE([DT Khám], 1000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: bb3172b8-645e-49bb-aef6-c256aebf78c2
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000, """" & FORMAT(SELECTEDMEASURE() / 1000, "#,0.00") & " tỷ""", "#,0"" tr""")
+
+	measure 'Kính (tr₫)' = DIVIDE([DT Kính], 1000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: 5a8d5dbb-faac-43ba-ba03-327cfc9793a9
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000, """" & FORMAT(SELECTEDMEASURE() / 1000, "#,0.00") & " tỷ""", "#,0"" tr""")
+
+	measure 'Thuốc (tr₫)' = DIVIDE([DT Thuốc], 1000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: a5e46fdb-1ef3-459a-a638-8a9ef418df70
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000, """" & FORMAT(SELECTEDMEASURE() / 1000, "#,0.00") & " tỷ""", "#,0"" tr""")
+
+	measure 'Tổng DT (tr₫)' = DIVIDE([Tổng DT], 1000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: b18f83a4-0a12-4bd0-8605-f3917a3cea09
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000, """" & FORMAT(SELECTEDMEASURE() / 1000, "#,0.00") & " tỷ""", "#,0"" tr""")
+
+	measure 'Bán hàng (tr₫)' = DIVIDE([DT Bán hàng], 1000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: 8264131d-4533-419e-9195-4a721ae03431
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000, """" & FORMAT(SELECTEDMEASURE() / 1000, "#,0.00") & " tỷ""", "#,0"" tr""")
+
+	measure 'BHYT (tr₫)' = DIVIDE([Tiền BHYT], 1000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: ccc0cf91-fc27-4d82-9ffe-4d72a153a291
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000, """" & FORMAT(SELECTEDMEASURE() / 1000, "#,0.00") & " tỷ""", "#,0"" tr""")
+
+	measure 'BN trả (tr₫)' = DIVIDE([BN chi trả], 1000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: e360a1eb-c673-4189-9b8d-a1ed1a253c24
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000, """" & FORMAT(SELECTEDMEASURE() / 1000, "#,0.00") & " tỷ""", "#,0"" tr""")
+
+	measure 'Số CTV' = CALCULATE(DISTINCTCOUNT('dwh fact_kham'[nguoi_gioi_thieu]), KEEPFILTERS(FILTER(ALL('dwh fact_kham'[nguoi_gioi_thieu]), LEN(TRIM('dwh fact_kham'[nguoi_gioi_thieu])) > 0)))
+		formatString: #,0
+		displayFolder: 7. Cộng tác viên
+		lineageTag: e11b660c-3605-4322-aaf3-20b2c4d87edb
+
+	measure 'BN được giới thiệu' = CALCULATE(DISTINCTCOUNT('dwh fact_kham'[ma_bn]), KEEPFILTERS(FILTER(ALL('dwh fact_kham'[nguoi_gioi_thieu]), LEN(TRIM('dwh fact_kham'[nguoi_gioi_thieu])) > 0)))
+		formatString: #,0
+		displayFolder: 7. Cộng tác viên
+		lineageTag: d3b22cba-6eb9-4bb6-8b7d-ddf1600407c8
+
+	measure 'Lượt khám CTV' = CALCULATE([Số lượt khám], KEEPFILTERS(FILTER(ALL('dwh fact_kham'[nguoi_gioi_thieu]), LEN(TRIM('dwh fact_kham'[nguoi_gioi_thieu])) > 0)))
+		formatString: #,0
+		displayFolder: 7. Cộng tác viên
+		lineageTag: 697147f4-f879-410c-a989-4fc2c2cecf34
+
+	measure 'DT từ CTV' = CALCULATE([DT Khám], KEEPFILTERS(FILTER(ALL('dwh fact_kham'[nguoi_gioi_thieu]), LEN(TRIM('dwh fact_kham'[nguoi_gioi_thieu])) > 0)))
+		displayFolder: 7. Cộng tác viên
+		lineageTag: ac0063c2-6ef1-4411-a767-dc08b811623f
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'TB tiền khám/BN (CTV)' = DIVIDE([DT từ CTV], [BN được giới thiệu])
+		displayFolder: 7. Cộng tác viên
+		lineageTag: 4fef691d-0c58-4139-959c-661347dc0c88
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure '% DT từ CTV' = DIVIDE([DT từ CTV], CALCULATE([DT Khám], REMOVEFILTERS('dwh dim_nguon_gioi_thieu')))
+		formatString: 0.0%
+		displayFolder: 7. Cộng tác viên
+		lineageTag: d3125592-14ed-461d-adb0-4c10db77d75b
+
+	measure 'CTV (tr₫)' = DIVIDE([DT từ CTV], 1000000)
+		displayFolder: 7. Cộng tác viên
+		lineageTag: 17267fc6-26bd-4a95-8eab-a2deeb9f5840
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000, """" & FORMAT(SELECTEDMEASURE() / 1000, "#,0.00") & " tỷ""", "#,0"" tr""")
+
+	measure 'Khám (tỷ₫)' = DIVIDE([DT Khám], 1000000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: 82dcc870-863f-4f3d-b2fb-ed6879cdf65f
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'Kính (tỷ₫)' = DIVIDE([DT Kính], 1000000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: c3b8463b-1345-4b75-b63a-aee96371be02
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'Thuốc (tỷ₫)' = DIVIDE([DT Thuốc], 1000000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: 051ea28c-2ca9-4a85-b6d5-c8bf3c2c9f07
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'Lượt khám (nghìn)' = DIVIDE([Số lượt khám], 1000)
+		formatString: #,0.00 " nghìn"
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: cc28d923-7bdc-4baa-b289-dd5916c38a2d
+
+	measure 'Giảm giá bán hàng' = CALCULATE(SUM('dwh fact_ban_hang'[tien_giam]), KEEPFILTERS('dwh dim_san_pham'[nhom_hang] <> "Tạm ứng"))
+		displayFolder: 1. Doanh thu
+		lineageTag: 560ea961-6d83-401b-96f9-009837c7c7bf
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'Tổng khuyến mãi' = [Giảm giá khám] + [Giảm giá bán hàng]
+		displayFolder: 1. Doanh thu
+		lineageTag: d92fa7e1-7e91-49b1-a46f-89e9b00efad1
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'BN BHYT' = CALCULATE(DISTINCTCOUNT('dwh fact_kham'[ma_bn]), KEEPFILTERS('dwh fact_kham'[doi_tuong] = "BHYT"))
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: 41ed347e-002a-491f-8e58-d5e4e7a7fe51
+
+	measure 'BN viện phí' = CALCULATE(DISTINCTCOUNT('dwh fact_kham'[ma_bn]), KEEPFILTERS('dwh fact_kham'[doi_tuong] = "Dịch vụ"))
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: 0edd620b-7d68-40c6-92d7-227dfaf2da0a
+
+	measure 'BN nội trú' = CALCULATE(DISTINCTCOUNT('dwh fact_kham'[ma_bn]), KEEPFILTERS('dwh fact_kham'[loai_dieu_tri] = "Nội trú"))
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: de2edf4e-8d09-45ba-8d74-f680538a4a1f
+
+	measure 'Lượt nội trú' = CALCULATE(DISTINCTCOUNT('dwh fact_kham'[ma_kcb]), KEEPFILTERS('dwh fact_kham'[loai_dieu_tri] = "Nội trú"))
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: 37e8d89c-52ef-4e38-803f-45d536f17dfb
+
+	measure 'DT nội trú' = CALCULATE([DT Khám], KEEPFILTERS('dwh fact_kham'[loai_dieu_tri] = "Nội trú"))
+		displayFolder: 2. Khám
+		lineageTag: 2f9e470f-8190-459b-afe5-c6fd385fa256
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'BN ngoại trú' = CALCULATE(DISTINCTCOUNT('dwh fact_kham'[ma_bn]), KEEPFILTERS('dwh fact_kham'[loai_dieu_tri] = "Ngoại trú"))
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: dbfb1b25-108d-48db-98da-ebc36f634fe7
+
+	measure 'DT ngoại trú' = CALCULATE([DT Khám], KEEPFILTERS('dwh fact_kham'[loai_dieu_tri] = "Ngoại trú"))
+		displayFolder: 2. Khám
+		lineageTag: 75e06dee-1ed4-4cb0-97c0-3d31567459c4
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure '% DT nội trú' = DIVIDE([DT nội trú], [DT Khám])
+		formatString: 0.0%
+		displayFolder: 2. Khám
+		lineageTag: eeb7017d-7a56-4aad-bfcf-5ecbccddc53b
+
+	measure 'BN đã trả' = [BN chi trả]
+		displayFolder: 1. Doanh thu
+		lineageTag: 5c861ab6-c86d-4bab-9542-f1dca33bbefe
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'BHYT chờ hoàn' = [Tiền BHYT]
+		displayFolder: 1. Doanh thu
+		lineageTag: c0853ba7-59a2-4cff-9ac7-0373b68c3cf2
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'Nhãn BN đã trả' = "BN " & FORMAT(DIVIDE([BN đã trả], 1000000000), "0.00") & " tỷ"
+		displayFolder: 8. Nhãn thẻ
+		lineageTag: 1b13822d-1f2f-4cfb-bc8d-192474653ad1
+
+	measure 'Nhãn BHYT chờ hoàn' = "BHYT " & FORMAT(DIVIDE([BHYT chờ hoàn], 1000000000), "0.00") & " tỷ"
+		displayFolder: 8. Nhãn thẻ
+		lineageTag: bba0fc5c-f2e4-4f55-b485-ad1f5816b6f7
+
+	measure 'Nhãn BN BHYT' = "BHYT " & FORMAT([BN BHYT], "#,0")
+		displayFolder: 8. Nhãn thẻ
+		lineageTag: 75fce325-bd11-4583-af9d-b22cfcb76737
+
+	measure 'Nhãn BN viện phí' = "VP " & FORMAT([BN viện phí], "#,0")
+		displayFolder: 8. Nhãn thẻ
+		lineageTag: a8f9cef9-ed44-4c76-82f0-9359af30c753
+
+	measure 'BN nội trú BHYT' = CALCULATE([BN nội trú], KEEPFILTERS('dwh fact_kham'[doi_tuong] = "BHYT"))
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: 885d3654-92e3-4286-98d8-b0aff6e59be2
+
+	measure 'BN nội trú viện phí' = CALCULATE([BN nội trú], KEEPFILTERS('dwh fact_kham'[doi_tuong] = "Dịch vụ"))
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: 658fc6ed-d391-417a-8429-a85cc2919a58
+
+	measure '% nội trú BHYT' = DIVIDE([BN nội trú BHYT], [BN nội trú])
+		formatString: 0.0%
+		displayFolder: 2. Khám
+		lineageTag: 9f6141d9-d74d-4933-a505-ddaa8aefb0e5
+
+	measure '% nội trú viện phí' = DIVIDE([BN nội trú viện phí], [BN nội trú])
+		formatString: 0.0%
+		displayFolder: 2. Khám
+		lineageTag: deaf7ae3-68e8-4667-9c86-85ee64eea7c3
+
+	measure 'BN ngoại trú BHYT' = CALCULATE([BN ngoại trú], KEEPFILTERS('dwh fact_kham'[doi_tuong] = "BHYT"))
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: 022d20a5-1e58-4011-8c12-219a1666e0e2
+
+	measure 'BN ngoại trú viện phí' = CALCULATE([BN ngoại trú], KEEPFILTERS('dwh fact_kham'[doi_tuong] = "Dịch vụ"))
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: 43044678-255b-4c91-87c5-831cd9e4de86
+
+	measure '% ngoại trú BHYT' = DIVIDE([BN ngoại trú BHYT], [BN ngoại trú])
+		formatString: 0.0%
+		displayFolder: 2. Khám
+		lineageTag: 2ce17db0-1cd1-47ae-b058-4c178694217f
+
+	measure '% ngoại trú viện phí' = DIVIDE([BN ngoại trú viện phí], [BN ngoại trú])
+		formatString: 0.0%
+		displayFolder: 2. Khám
+		lineageTag: 40c3eaed-5de9-4c54-9f6f-444e0a8a8d83
+
+	measure 'Top 10 dịch vụ (tr₫)' =
+			VAR r = RANKX(ALLSELECTED('dwh dim_dich_vu'[ten_dich_vu]), [DT Khám], , DESC, Dense)
+			RETURN IF(r <= 10 && NOT ISBLANK([DT Khám]), DIVIDE([DT Khám], 1000000000))
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: dd05364d-514c-462c-ae42-976f3f296e46
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'Top 10 sản phẩm (tr₫)' =
+			VAR r = RANKX(ALLSELECTED('dwh dim_san_pham'[ten_hang]), [DT Bán hàng], , DESC, Dense)
+			RETURN IF(r <= 10 && NOT ISBLANK([DT Bán hàng]), DIVIDE([DT Bán hàng], 1000000))
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: 6e761894-1725-4a09-9b6c-4abd4e1c504e
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000, """" & FORMAT(SELECTEDMEASURE() / 1000, "#,0.00") & " tỷ""", "#,0"" tr""")
+
+	measure 'DT gốc khám' = SUM('dwh fact_kham'[doanh_thu])
+		displayFolder: 2. Khám
+		lineageTag: 60dcbe92-69e1-49d7-9e6d-b5cb213e9457
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'Lượt có giảm giá' = CALCULATE(DISTINCTCOUNT('dwh fact_kham'[ma_kcb]), KEEPFILTERS('dwh fact_kham'[giam_gia] > 0))
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: 0ac6fbb2-3549-4d4c-a37c-023919d740e4
+
+	measure '% giảm giá' = DIVIDE([Giảm giá khám], [DT gốc khám])
+		formatString: 0.0%
+		displayFolder: 2. Khám
+		lineageTag: 1a714218-dc69-48e1-9090-f85a9c31217f
+
+	measure 'TB giảm/lượt được giảm' = DIVIDE([Giảm giá khám], [Lượt có giảm giá])
+		displayFolder: 2. Khám
+		lineageTag: a25b84e1-7fe3-402a-a0c5-11d0c77e8ba0
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure 'Top 10 giảm giá (tr₫)' =
+			VAR r = RANKX(ALLSELECTED('dwh dim_dich_vu'[ten_dich_vu]), [Giảm giá khám], , DESC, Dense)
+			RETURN IF(r <= 10 && [Giảm giá khám] > 0, DIVIDE([Giảm giá khám], 1000000))
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: d6146717-eb30-4813-96a0-72c90ea267b9
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000, """" & FORMAT(SELECTEDMEASURE() / 1000, "#,0.00") & " tỷ""", "#,0"" tr""")
+
+	measure 'Lọc top DV' =
+			VAR mode = SELECTEDVALUE('Chế độ top'[Chế độ], "Top 10 cao nhất")
+			VAR dt = [DT Khám]
+			VAR nhom = CALCULATE(MAX('dwh dim_dich_vu'[nhom_dich_vu]))
+			VAR hiSet = FILTER(ALLSELECTED('dwh dim_dich_vu'[ten_dich_vu]), CALCULATE(MAX('dwh dim_dich_vu'[nhom_dich_vu])) <> "Xét nghiệm")
+			VAR loSet = FILTER(ALLSELECTED('dwh dim_dich_vu'[ten_dich_vu]), CALCULATE(MAX('dwh dim_dich_vu'[nhom_dich_vu])) = "Phẫu thuật" && [DT Khám] > 0)
+			VAR rHi = RANKX(hiSet, [DT Khám], , DESC, Dense)
+			VAR rLo = RANKX(loSet, [DT Khám], , ASC, Dense)
+			RETURN IF(ISBLANK(dt) || dt <= 0 || nhom = "Xét nghiệm", 0, IF(LEFT(mode, 10) = "Top 10 cá", IF(rHi <= 10, 1, 0), IF(nhom = "Phẫu thuật" && rLo <= 10, 1, 0)))
+		formatString: 0
+		isHidden
+		displayFolder: 9. Lọc
+		lineageTag: 933ec4b6-f8ba-4d98-b4aa-640e45aa6dec
+
+	measure 'Nội trú (tỷ₫)' = DIVIDE([DT nội trú], 1000000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: b4fbe2a9-5ce9-471c-ab4f-0e94388e9f5e
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'Ngoại trú (tỷ₫)' = DIVIDE([DT ngoại trú], 1000000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: d2028b0d-721d-42e9-a0f4-ea3cc18b062d
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'Dịch vụ top 1 (lượt)' =
+			VAR t = TOPN(1, VALUES('dwh dim_dich_vu'[ten_dich_vu]), [Số lượt khám], DESC)
+			RETURN CONCATENATEX(t, 'dwh dim_dich_vu'[ten_dich_vu], ", ")
+		displayFolder: 2. Khám
+		lineageTag: 2220ce5d-4aa7-4692-b208-e82a49a9e3c6
+
+	measure 'Lượt dịch vụ top 1' = MAXX(VALUES('dwh dim_dich_vu'[ten_dich_vu]), [Số lượt khám])
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: ef9cad48-edf4-4c1a-9e10-67325ed923c8
+
+	measure 'Top 1 DV tháng (tr₫)' =
+			VAR r = RANKX(ALLSELECTED('dwh dim_dich_vu'[ten_dich_vu]), [DT Khám], , DESC, Dense)
+			RETURN IF(r = 1 && NOT ISBLANK([DT Khám]), DIVIDE([DT Khám], 1000000))
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: eabd588d-55f9-44c4-91dd-b2ec1f398252
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000, """" & FORMAT(SELECTEDMEASURE() / 1000, "#,0.00") & " tỷ""", "#,0"" tr""")
+
+	measure 'Top 1 DV lượt tháng' =
+			VAR khamCoBan = MAXX(TOPN(1, ALL('dwh dim_dich_vu'[ten_dich_vu]), CALCULATE([Số lượt khám], REMOVEFILTERS('dwh dim_ngay')), DESC), 'dwh dim_dich_vu'[ten_dich_vu])
+			VAR ten = SELECTEDVALUE('dwh dim_dich_vu'[ten_dich_vu])
+			VAR r = RANKX(FILTER(ALLSELECTED('dwh dim_dich_vu'[ten_dich_vu]), 'dwh dim_dich_vu'[ten_dich_vu] <> khamCoBan), [Số lượt khám], , DESC, Dense)
+			RETURN IF(ten <> khamCoBan && r = 1 && NOT ISBLANK([Số lượt khám]), [Số lượt khám])
+		formatString: #,0
+		displayFolder: 2. Khám
+		lineageTag: 4e2bb8bb-acc3-40e1-a218-5d9faac81743
+
+	measure 'Top 1 DV tháng (tỷ₫)' =
+			VAR r = RANKX(ALLSELECTED('dwh dim_dich_vu'[ten_dich_vu]), [DT Khám], , DESC, Dense)
+			RETURN IF(r = 1 && NOT ISBLANK([DT Khám]), DIVIDE([DT Khám], 1000000000))
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: 92fc9636-77a8-4cd0-a60c-5bfbeb046024
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'BHYT (tỷ₫)' = DIVIDE([Tiền BHYT], 1000000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: 96de2af9-0d95-45b3-bc78-f1e7a8217116
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'BN trả (tỷ₫)' = DIVIDE([BN chi trả], 1000000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: ea2f68b0-751b-4b9b-9d9b-37980cbf9366
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'Top 10 giảm giá (tỷ₫)' =
+			VAR r = RANKX(ALLSELECTED('dwh dim_dich_vu'[ten_dich_vu]), [Giảm giá khám], , DESC, Dense)
+			RETURN IF(r <= 10 && [Giảm giá khám] > 0, DIVIDE([Giảm giá khám], 1000000000))
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: a1ddb1ab-0c16-431f-be30-3faa0d689ad9
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure '% BN BHYT' = DIVIDE([BN BHYT], [Số bệnh nhân])
+		formatString: 0.0%
+		displayFolder: 2. Khám
+		lineageTag: 739bc243-5fda-42a7-ab74-c75be4a372bf
+
+	measure '% BN viện phí' = DIVIDE([BN viện phí], [Số bệnh nhân])
+		formatString: 0.0%
+		displayFolder: 2. Khám
+		lineageTag: 7abba7ec-8938-4ad8-a757-94c0e71b199c
+
+	measure 'Chẩn đoán thường gặp' =
+			VAR ds = FILTER(VALUES('dwh dim_chan_doan'[ten_cd]), LEN(TRIM('dwh dim_chan_doan'[ten_cd])) > 0)
+			VAR ten = MAXX(TOPN(1, ds, [Số lượt khám], DESC, 'dwh dim_chan_doan'[ten_cd], ASC), 'dwh dim_chan_doan'[ten_cd])
+			RETURN IF(LEN(ten) > 28, LEFT(ten, 27) & "…", ten)
+		displayFolder: 2. Khám
+		lineageTag: 1548786f-2b86-4f1a-ac37-3f3cb7af891a
+
+	measure 'DT DV top 1 tháng (tỷ₫)' = DIVIDE(MAXX(VALUES('dwh dim_dich_vu'[ten_dich_vu]), [DT Khám]), 1000000000)
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: e862ab5b-e7f6-46b2-b1cd-88d0aa9d9eb4
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'Dịch vụ top 1 (DT)' =
+			VAR t = TOPN(1, VALUES('dwh dim_dich_vu'[ten_dich_vu]), [DT Khám], DESC)
+			RETURN CONCATENATEX(t, 'dwh dim_dich_vu'[ten_dich_vu], "; ")
+		displayFolder: 2. Khám
+		lineageTag: c050123f-ca95-451c-bd11-4b8cd20ccbfe
+
+	measure 'Top 10 chẩn đoán (tỷ₫)' =
+			VAR r = RANKX(ALLSELECTED('dwh dim_chan_doan'[ten_cd]), [DT Khám], , DESC, Dense)
+			RETURN IF(r <= 10 && [DT Khám] > 0, DIVIDE([DT Khám], 1000000000))
+		displayFolder: 6. Biểu đồ (triệu ₫)
+		lineageTag: a38a58ff-cb2f-45f0-b787-2f1ba1801b8a
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'Chẩn đoán BN' =
+			VAR ds = FILTER(VALUES('dwh dim_chan_doan'[ten_cd]), LEN(TRIM('dwh dim_chan_doan'[ten_cd])) > 0)
+			VAR ten = MAXX(TOPN(1, ds, [Số lượt khám], DESC, 'dwh dim_chan_doan'[ten_cd], ASC), 'dwh dim_chan_doan'[ten_cd])
+			RETURN IF(LEN(ten) > 28, LEFT(ten, 27) & "…", ten)
+		displayFolder: 3. Bệnh nhân
+		lineageTag: f7eb08eb-49d5-4f24-9179-2c9c99b54411
+
+	measure 'Phẫu thuật đã làm' = CONCATENATEX(CALCULATETABLE(VALUES('dwh dim_dich_vu'[ten_dich_vu]), KEEPFILTERS('dwh dim_dich_vu'[nhom_dich_vu] = "Phẫu thuật")), 'dwh dim_dich_vu'[ten_dich_vu], "; ")
+		displayFolder: 3. Bệnh nhân
+		lineageTag: e9263767-b578-4940-adfe-b00520f5f139
+
+	measure 'Lọc top BN' = IF(ISBLANK([DT Khám]), 0, IF(RANKX(ALLSELECTED('dwh dim_benh_nhan'[ma_bn]), [DT Khám], , DESC, Dense) <= 10, 1, 0))
+		formatString: 0
+		isHidden
+		displayFolder: 9. Lọc
+		lineageTag: ac2ac8e0-8db3-4dcb-b4b4-ed49d04c6b9e
+
+	measure 'Mã KCB (ds)' = CONCATENATEX(VALUES('dwh fact_kham'[ma_kcb]), 'dwh fact_kham'[ma_kcb], ", ", 'dwh fact_kham'[ma_kcb], ASC)
+		displayFolder: 3. Bệnh nhân
+		lineageTag: 7ac311fb-a967-4512-a64d-3b4de0277c9f
+
+	measure 'Dịch vụ PT/TT' =
+			VAR t = CONCATENATEX(CALCULATETABLE(VALUES('dwh dim_dich_vu'[ten_dich_vu]), 'dwh fact_kham'), 'dwh dim_dich_vu'[ten_dich_vu], "; ")
+			RETURN IF(LEN(t) > 40, LEFT(t, 39) & "…", t)
+		displayFolder: 3. Bệnh nhân
+		lineageTag: 5e630605-8b1b-462a-8675-21c317c44d8f
+
+	measure 'Chẩn đoán (lần khám)' =
+			VAR ds = CALCULATETABLE(VALUES('dwh dim_chan_doan'[ten_cd]), 'dwh fact_kham')
+			VAR ten = CONCATENATEX(FILTER(ds, LEN(TRIM('dwh dim_chan_doan'[ten_cd])) > 0), 'dwh dim_chan_doan'[ten_cd], "; ")
+			RETURN IF(LEN(ten) > 32, LEFT(ten, 31) & "…", ten)
+		displayFolder: 3. Bệnh nhân
+		lineageTag: 32bfee58-e649-4c8b-b0ce-0d8f91479497
+
+	measure 'CTV (tỷ₫)' = DIVIDE([DT từ CTV], 1000000000)
+		displayFolder: 7. Cộng tác viên
+		lineageTag: 3b2bc8cd-0585-4295-9fc5-bbc4e6215374
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'DT nguồn chọn' = CALCULATE([DT Khám], TREATAS(VALUES('Chọn nguồn'[Nhóm nguồn]), 'dwh dim_nguon_gioi_thieu'[nhom_nguon]))
+		displayFolder: 7. Cộng tác viên
+		lineageTag: bcb5d454-d982-4d40-becc-6ddb5019fdc1
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) >= 1000000000, """" & FORMAT(SELECTEDMEASURE() / 1000000000, "#,0.00") & " tỷ""", IF(ABS(SELECTEDMEASURE()) >= 1000000, """" & FORMAT(SELECTEDMEASURE() / 1000000, "#,0.##") & " tr""", "#,0"" ₫"""))
+
+	measure '% DT nguồn / tổng' = DIVIDE([DT nguồn chọn], [DT Khám])
+		formatString: 0.0%
+		displayFolder: 7. Cộng tác viên
+		lineageTag: 0c7a7914-a278-4a78-892e-c9e779ed34ae
+
+	measure 'DT nguồn chọn (tỷ₫)' = DIVIDE([DT nguồn chọn], 1000000000)
+		displayFolder: 7. Cộng tác viên
+		lineageTag: 1c043c49-b036-4156-bd28-33124e3f7bc9
+
+		formatStringDefinition = IF(ABS(SELECTEDMEASURE()) < 1, """" & FORMAT(SELECTEDMEASURE() * 1000, "#,0") & " tr""", "#,0.00"" tỷ""")
+
+	measure 'BN nguồn chọn' = CALCULATE(DISTINCTCOUNT('dwh fact_kham'[ma_bn]), TREATAS(VALUES('Chọn nguồn'[Nhóm nguồn]), 'dwh dim_nguon_gioi_thieu'[nhom_nguon]))
+		formatString: #,0
+		displayFolder: 7. Cộng tác viên
+		lineageTag: f8dca592-cfe4-45f2-80f4-b94593cd8938
+
+	measure '% DT theo nhóm hàng' = DIVIDE([DT Bán hàng], CALCULATE([DT Bán hàng], ALLSELECTED('dwh dim_san_pham'[nhom_hang])))
+		formatString: 0.0%
+		displayFolder: 4. Bán hàng
+		lineageTag: 971f2818-70e3-4983-8fa5-16d824915726
+
+	measure '% DT theo tuổi' = DIVIDE([DT Bán hàng], CALCULATE([DT Bán hàng], ALLSELECTED('dwh fact_ban_hang'[nhom_tuoi_kh], 'dwh fact_ban_hang'[nhom_tuoi_kh_sort])))
+		formatString: 0.0%
+		displayFolder: 4. Bán hàng
+		lineageTag: 27449ca5-1c0a-40dd-b1c4-eb4324668e1d
+
+	measure '% DT theo đối tượng' = DIVIDE([DT Bán hàng], CALCULATE([DT Bán hàng], ALLSELECTED('dwh fact_ban_hang'[doi_tuong_kham])))
+		formatString: 0.0%
+		displayFolder: 4. Bán hàng
+		lineageTag: befcd209-eaba-49ab-a0d6-580f61694bc5
+
+	measure '% DT theo loại khách' = DIVIDE([DT Bán hàng], CALCULATE([DT Bán hàng], ALLSELECTED('dwh fact_ban_hang'[loai_khach])))
+		formatString: 0.0%
+		displayFolder: 4. Bán hàng
+		lineageTag: b34e73b3-2a72-449d-8c74-7b518fd121ef
+
+	measure 'IN1 Cơ cấu' =
+			VAR t = [Tổng DT]
+			VAR k = DIVIDE([DT Khám], t) VAR g = DIVIDE([DT Kính], t) VAR th = DIVIDE([DT Thuốc], t)
+			RETURN "Tổng doanh thu " & FORMAT((t) / 1000000000, "#,0.00") & " tỷ" & ". Khám " & FORMAT(k, "0%") & " · Kính " & FORMAT(g, "0%") & " · Thuốc " & FORMAT(th, "0%") & ". " & IF(k >= 0.5, "Khám là trụ cột; quầy kính/thuốc còn dư địa bán chéo.", "Doanh thu khá cân bằng giữa các mảng.")
+		displayFolder: 8. Insights
+		lineageTag: 9c6ee0c8-5be6-44aa-801c-f5a27e2430ed
+
+	measure 'IN2 Theo tháng' =
+			VAR t = FILTER(ADDCOLUMNS(VALUES('dwh dim_ngay'[thang_nam]), "@dt", [Tổng DT]), [@dt] > 0)
+			VAR a = AVERAGEX(t, [@dt])
+			VAR b = TOPN(1, t, [@dt], DESC) VAR w = TOPN(1, FILTER(t, [@dt] >= a * 0.3), [@dt], ASC)
+			RETURN "Cao nhất " & MAXX(b, 'dwh dim_ngay'[thang_nam]) & ": " & FORMAT((MAXX(b, [@dt])) / 1000000000, "#,0.00") & " tỷ" & ". Thấp nhất " & MAXX(w, 'dwh dim_ngay'[thang_nam]) & ": " & FORMAT((MAXX(w, [@dt])) / 1000000000, "#,0.00") & " tỷ" & ". Bình quân " & FORMAT((a) / 1000000000, "#,0.00") & " tỷ" & "/tháng."
+		displayFolder: 8. Insights
+		lineageTag: 29b7dbb5-e7b2-4f21-b3b4-a9d39046e3a2
+
+	measure 'IN3 Dịch vụ' =
+			VAR t = FILTER(ADDCOLUMNS(VALUES('dwh dim_dich_vu'[ten_dich_vu]), "@dt", [DT Khám]), [@dt] > 0)
+			VAR b = TOPN(1, t, [@dt], DESC) VAR t3 = SUMX(TOPN(3, t, [@dt], DESC), [@dt])
+			RETURN MAXX(b, 'dwh dim_dich_vu'[ten_dich_vu]) & " dẫn đầu với " & FORMAT((MAXX(b, [@dt])) / 1000000000, "#,0.00") & " tỷ" & " (" & FORMAT(DIVIDE(MAXX(b, [@dt]), [DT Khám]), "0%") & " DT khám). Top 3 dịch vụ chiếm " & FORMAT(DIVIDE(t3, [DT Khám]), "0%") & " — doanh thu phụ thuộc lớn vào vài gói."
+		displayFolder: 8. Insights
+		lineageTag: 19378b19-91cf-455b-b05d-f4063bccdd55
+
+	measure 'IN4 Nội trú' =
+			VAR pl = DIVIDE([Lượt nội trú], [Số lượt khám]) VAR pd = DIVIDE([DT nội trú], [DT Khám])
+			VAR a1 = DIVIDE([DT nội trú], [Lượt nội trú]) VAR a2 = DIVIDE([DT ngoại trú], [Số lượt khám] - [Lượt nội trú])
+			RETURN "Phẫu thuật (nội trú) chỉ " & FORMAT(pl, "0%") & " lượt nhưng mang về " & FORMAT(pd, "0%") & " DT khám. TB " & FORMAT(a1 / 1000000, "#,0.0") & " tr/lượt nội trú so với " & FORMAT(a2 / 1000000, "#,0.0") & " tr/lượt ngoại trú."
+		displayFolder: 8. Insights
+		lineageTag: 90e0e274-0c8b-4599-8cbc-83c6562daabf
+
+	measure 'IN5 BHYT' =
+			VAR p = [% BN BHYT] VAR d = DIVIDE([Tiền BHYT], [DT Khám])
+			RETURN "BN BHYT chiếm " & FORMAT(p, "0%") & " số bệnh nhân. Tiền BHYT phải thu " & FORMAT(([Tiền BHYT]) / 1000000000, "#,0.00") & " tỷ" & " (" & FORMAT(d, "0%") & " DT khám) — khoản chờ BHXH hoàn, cần theo dõi dòng tiền."
+		displayFolder: 8. Insights
+		lineageTag: 579feec1-97fd-4197-8609-b61d92494d1e
+
+	measure 'IN6 Độ tuổi' =
+			VAR t = FILTER(ADDCOLUMNS(VALUES('dwh fact_kham'[nhom_tuoi]), "@dt", [DT Khám]), [@dt] > 0)
+			VAR b = TOPN(1, t, [@dt], DESC)
+			VAR o40 = CALCULATE([DT Khám], KEEPFILTERS('dwh fact_kham'[nhom_tuoi] IN {"41-60", "60+"}))
+			RETURN "Nhóm " & MAXX(b, 'dwh fact_kham'[nhom_tuoi]) & " tuổi đóng góp nhiều nhất (" & FORMAT(DIVIDE(MAXX(b, [@dt]), [DT Khám]), "0%") & "). BN trên 40 tuổi chiếm " & FORMAT(DIVIDE(o40, [DT Khám]), "0%") & " DT khám — tập trung chương trình cho người trung, cao tuổi."
+		displayFolder: 8. Insights
+		lineageTag: a28aa9b1-e738-4853-8547-350dd1e75a00
+
+	measure 'IN7 Địa lý' =
+			VAR t = FILTER(ADDCOLUMNS(VALUES('dwh dim_dia_ly'[tinh_tp]), "@dt", [DT Khám]), [@dt] > 0)
+			VAR b = TOPN(1, t, [@dt], DESC) VAR n1 = MAXX(b, 'dwh dim_dia_ly'[tinh_tp])
+			VAR b2 = TOPN(1, FILTER(t, 'dwh dim_dia_ly'[tinh_tp] <> n1), [@dt], DESC)
+			RETURN n1 & " chiếm " & FORMAT(DIVIDE(MAXX(b, [@dt]), [DT Khám]), "0%") & " DT khám. Tỉnh thứ 2 là " & MAXX(b2, 'dwh dim_dia_ly'[tinh_tp]) & " (" & FORMAT(DIVIDE(MAXX(b2, [@dt]), [DT Khám]), "0%") & ") — còn dư địa thu hút BN tỉnh lân cận."
+		displayFolder: 8. Insights
+		lineageTag: 701f072a-b08c-4700-ae38-856383c188ee
+
+	measure 'IN8 Nguồn' =
+			VAR t = FILTER(ADDCOLUMNS(VALUES('dwh dim_nguon_gioi_thieu'[nhom_nguon]), "@dt", [DT Khám]), [@dt] > 0)
+			VAR b = TOPN(1, t, [@dt], DESC)
+			VAR mk = CALCULATE([DT Khám], KEEPFILTERS('dwh dim_nguon_gioi_thieu'[nhom_nguon] = "Marketing"))
+			RETURN "Nguồn mang lại DT lớn nhất: " & MAXX(b, 'dwh dim_nguon_gioi_thieu'[nhom_nguon]) & " (" & FORMAT(DIVIDE(MAXX(b, [@dt]), [DT Khám]), "0%") & "). Marketing chỉ đóng góp " & FORMAT(DIVIDE(mk, [DT Khám]), "0%") & " — nên đánh giá lại hiệu quả kênh quảng cáo."
+		displayFolder: 8. Insights
+		lineageTag: ae7c993a-7c07-4240-bd1d-435774ed5aad
+
+	measure 'IN9 Khuyến mãi' =
+			VAR t = FILTER(ADDCOLUMNS(VALUES('dwh dim_dich_vu'[ten_dich_vu]), "@g", [Giảm giá khám]), [@g] > 0)
+			VAR b = TOPN(1, t, [@g], DESC)
+			RETURN "Tổng khuyến mãi " & FORMAT(([Tổng khuyến mãi]) / 1000000000, "#,0.00") & " tỷ" & "; giảm giá khám bằng " & FORMAT(DIVIDE([Giảm giá khám], [DT gốc khám]), "0%") & " DT gốc. Giảm nhiều nhất: " & MAXX(b, 'dwh dim_dich_vu'[ten_dich_vu]) & " (" & FORMAT((MAXX(b, [@g])) / 1000000000, "#,0.00") & " tỷ" & ")."
+		displayFolder: 8. Insights
+		lineageTag: e578b7cf-a182-460b-8690-74888850c791
+
+	measure 'IN10 Quay lại' =
+			VAR bn = VALUES('dwh fact_kham'[ma_bn])
+			VAR ql = FILTER(bn, CALCULATE(MAX('dwh fact_kham'[lan_kham])) >= 2)
+			VAR dql = CALCULATE([DT Khám], ql)
+			RETURN FORMAT(DIVIDE(COUNTROWS(ql), COUNTROWS(bn)), "0%") & " bệnh nhân quay lại khám từ 2 lần trở lên, đóng góp " & FORMAT(DIVIDE(dql, [DT Khám]), "0%") & " DT khám. Chăm sóc sau khám (nhắc tái khám) sẽ giúp tăng tỷ lệ này."
+		displayFolder: 8. Insights
+		lineageTag: 858e7310-330b-43d5-ba96-6f3c77a1131b
+
+	measure 'IN11 Kính' =
+			VAR t = CALCULATETABLE(FILTER(ADDCOLUMNS(VALUES('dwh dim_san_pham'[nhom_hang]), "@dt", [DT Bán hàng]), [@dt] > 0), 'dwh dim_san_pham'[loai_quay] = "Kính")
+			VAR b = TOPN(1, t, [@dt], DESC)
+			VAR kl = DIVIDE(CALCULATE([DT Kính], KEEPFILTERS('dwh fact_ban_hang'[loai_khach] = "Khách lẻ")), [DT Kính])
+			RETURN MAXX(b, 'dwh dim_san_pham'[nhom_hang]) & " dẫn đầu quầy kính (" & FORMAT(DIVIDE(MAXX(b, [@dt]), [DT Kính]), "0%") & "). " & FORMAT(kl, "0%") & " DT kính từ khách lẻ không khám — cơ hội chuyển đổi sang khám mắt."
+		displayFolder: 8. Insights
+		lineageTag: cc96d248-9926-4092-83ac-c3ce2289cc9d
+
+	measure 'IN12 Thuốc' =
+			VAR t = CALCULATETABLE(FILTER(ADDCOLUMNS(VALUES('dwh dim_san_pham'[nhom_hang]), "@dt", [DT Bán hàng]), [@dt] > 0), 'dwh dim_san_pham'[loai_quay] = "Thuốc")
+			VAR b = TOPN(1, t, [@dt], DESC)
+			VAR ml = DIVIDE(CALCULATE([DT Thuốc], KEEPFILTERS('dwh fact_ban_hang'[doi_tuong_kham] = "Không khám (mua lẻ)")), [DT Thuốc])
+			VAR bh = DIVIDE(CALCULATE([DT Thuốc], KEEPFILTERS('dwh fact_ban_hang'[doi_tuong_kham] = "BHYT")), [DT Thuốc])
+			RETURN MAXX(b, 'dwh dim_san_pham'[nhom_hang]) & " chiếm " & FORMAT(DIVIDE(MAXX(b, [@dt]), [DT Thuốc]), "0%") & " DT thuốc. Mua lẻ " & FORMAT(ml, "0%") & ", khách BHYT " & FORMAT(bh, "0%") & "."
+		displayFolder: 8. Insights
+		lineageTag: e3a57c48-73ce-4949-a1e0-a9541a4408bf
+
+	column x
+		isHidden
+		lineageTag: 9d0c3fc3-fa37-42f8-bec9-ba87e85ee2f4
+		isNameInferred
+		sourceColumn: [x]
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW("x", BLANK())
+

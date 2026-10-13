@@ -1,0 +1,116 @@
+table 'dwh dim_benh_nhan'
+	lineageTag: 2b91df7d-a3e0-488b-a3ab-d6e77a815905
+
+	column ma_bn
+		dataType: int64
+		formatString: 0
+		lineageTag: 4fcc31b5-3e1f-411b-95b8-833df5d5368a
+		summarizeBy: none
+		sourceColumn: ma_bn
+
+		annotation SummarizationSetBy = Automatic
+
+	column ho_ten
+		dataType: string
+		lineageTag: f8e44813-4947-474a-bbab-e8033442fff7
+		summarizeBy: none
+		sourceColumn: ho_ten
+
+		annotation SummarizationSetBy = Automatic
+
+	column gioi_tinh
+		dataType: string
+		lineageTag: ca3c9fda-9e7b-4065-8557-cc08014f415d
+		summarizeBy: none
+		sourceColumn: gioi_tinh
+
+		annotation SummarizationSetBy = Automatic
+
+	column nam_sinh
+		dataType: int64
+		formatString: 0
+		lineageTag: e855cdfe-d9f9-47bd-a7be-15962742b312
+		summarizeBy: sum
+		sourceColumn: nam_sinh
+
+		annotation SummarizationSetBy = Automatic
+
+	column dien_thoai
+		dataType: string
+		lineageTag: d6877aa2-bb78-4d98-bf57-25cd5dfa1965
+		summarizeBy: none
+		sourceColumn: dien_thoai
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_chi
+		dataType: string
+		lineageTag: f44615a6-85e8-426f-894f-12c9a3677051
+		summarizeBy: none
+		sourceColumn: dia_chi
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_ly_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 394d2550-8f66-4545-93bd-a22035f55dbb
+		summarizeBy: none
+		sourceColumn: dia_ly_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ngay_cap_ma
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 625422ab-15ab-4527-b779-b8f4244dfd50
+		summarizeBy: none
+		sourceColumn: ngay_cap_ma
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column load_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ab7f9f26-4a63-456f-8e68-3acc2fbfe24b
+		summarizeBy: none
+		sourceColumn: load_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column update_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 65153086-41bf-445a-a5dd-667311a1a998
+		summarizeBy: none
+		sourceColumn: update_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column nhom_chi_tra
+		dataType: string
+		lineageTag: 4a4ad147-5573-4ece-9e63-a7298c719dc5
+		summarizeBy: none
+		sourceColumn: nhom_chi_tra
+
+		annotation SummarizationSetBy = Automatic
+
+	column ma_bn_txt = FORMAT('dwh dim_benh_nhan'[ma_bn], "0")
+		dataType: string
+		lineageTag: 32e89ecf-8423-4647-8e89-a0326272a6c6
+		summarizeBy: none
+
+	partition 'dwh dim_benh_nhan' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "Hitech Hospital"),
+				    dwh_dim_benh_nhan = Source{[Schema="dwh",Item="dim_benh_nhan"]}[Data]
+				in
+				    dwh_dim_benh_nhan
+
+	annotation PBI_ResultType = Table
+

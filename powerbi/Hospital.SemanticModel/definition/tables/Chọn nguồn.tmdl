@@ -1,0 +1,24 @@
+table 'Chọn nguồn'
+	lineageTag: 7e524c85-0360-4e66-9260-3f6f37ac4560
+
+	column 'Nhóm nguồn'
+		dataType: string
+		lineageTag: 697a254f-660a-4b27-b598-58ce11eb15a9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Nhóm nguồn]
+		sortByColumn: 'Thứ tự'
+
+	column 'Thứ tự'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3d15cd9a-2ad1-4592-be33-c719b7637cca
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Thứ tự]
+
+	partition 'Chọn nguồn' = calculated
+		mode: import
+		source = DATATABLE("Nhóm nguồn", STRING, "Thứ tự", INTEGER, {{"Marketing", 1}, {"CTV / Kinh doanh", 2}, {"Người nhà NV", 3}, {"Người quen (BN giới thiệu)", 4}, {"Tự đến", 5}, {"Khác", 6}})
+

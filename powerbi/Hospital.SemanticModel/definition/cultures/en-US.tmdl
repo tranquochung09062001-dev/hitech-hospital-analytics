@@ -1,0 +1,854 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "dwh_dim_dich_vu.ten_dich_vu": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_dich_vu",
+			          "ConceptualProperty": "ten_dich_vu"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Dịch vụ": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.chẩn_đoán_thường_gặp": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Chẩn đoán thường gặp"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Chẩn đoán thường gặp": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.dt_khám": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "DT Khám"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Doanh thu": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.số_lượt_khám": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Số lượt khám"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Lượt": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.bn_bhyt": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "% BN BHYT"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% BHYT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.bn_viện_phí": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "% BN viện phí"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% VP": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_dim_ngay.thang": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_ngay",
+			          "ConceptualProperty": "thang"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Tháng": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_dim_ngay.ngay": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_ngay",
+			          "ConceptualProperty": "ngay"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "dwh_dim_benh_nhan.ho_ten": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_benh_nhan",
+			          "ConceptualProperty": "ho_ten"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Khách hàng": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_dim_benh_nhan.dien_thoai": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_benh_nhan",
+			          "ConceptualProperty": "dien_thoai"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "SĐT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_dim_benh_nhan.dia_chi": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_benh_nhan",
+			          "ConceptualProperty": "dia_chi"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Địa chỉ": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_fact_kham.lan_kham": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh fact_kham",
+			          "ConceptualProperty": "lan_kham"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Lần": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_dim_chan_doan.ten_cd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_chan_doan",
+			          "ConceptualProperty": "ten_cd"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table_measures.mã_kcb_ds": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Mã KCB (ds)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Mã KCB": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.chẩn_đoán_lần_khám": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Chẩn đoán (lần khám)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Chẩn đoán": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.dịch_vụ_pt_tt": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Dịch vụ PT/TT"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PT / Thủ thuật": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_dim_benh_nhan.ma_bn": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_benh_nhan",
+			          "ConceptualProperty": "ma_bn"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table_measures.bn_được_giới_thiệu": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "BN được giới thiệu"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "BN": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.lượt_khám_ctv": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Lượt khám CTV"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Lượt khám": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.dt_từ_ctv": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "DT từ CTV"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Doanh thu": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.tb_tiền_khám_bn_ctv": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "TB tiền khám/BN (CTV)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "TB / BN": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_fact_kham.nguoi_gioi_thieu": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh fact_kham",
+			          "ConceptualProperty": "nguoi_gioi_thieu"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Người giới thiệu": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_dim_nguon_gioi_thieu.nguon_gioi_thieu": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_nguon_gioi_thieu",
+			          "ConceptualProperty": "nguon_gioi_thieu"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Nguồn / Người giới thiệu": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.dt_từ_ctv1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "% DT từ CTV"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% DT khám": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.dt_nguồn___tổng": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "% DT nguồn / tổng"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% DT khám": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.dt_nguồn_chọn_tỷ": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "DT nguồn chọn (tỷ₫)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Doanh thu nguồn": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.bn_nguồn_chọn": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "BN nguồn chọn"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Số BN": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.số_lượng_bán": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Số lượng bán"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "SL": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.bán_hàng_tr": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Bán hàng (tr₫)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Doanh thu": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_dim_san_pham.ten_hang": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_san_pham",
+			          "ConceptualProperty": "ten_hang"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Sản phẩm": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.dt_theo_nhóm_hàng": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "% DT theo nhóm hàng"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% DT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.thuốc_tr": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Thuốc (tr₫)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Doanh thu": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.số_đơn_thuốc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Số đơn thuốc"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Số đơn": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.dt_theo_tuổi": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "% DT theo tuổi"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% DT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_dim_san_pham.nhom_hang": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_san_pham",
+			          "ConceptualProperty": "nhom_hang"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "dwh_dim_san_pham.dvt": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh dim_san_pham",
+			          "ConceptualProperty": "dvt"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table_measures.dt_theo_loại_khách": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "% DT theo loại khách"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% DT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.kính_tr": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Kính (tr₫)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Doanh thu": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.số_đơn_kính": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Số đơn kính"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Số đơn": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.dt_theo_đối_tượng": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "% DT theo đối tượng"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% DT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_fact_kham.ngay_kham": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh fact_kham",
+			          "ConceptualProperty": "ngay_kham"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Ngày khám": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_fact_kham.ma_bn": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh fact_kham",
+			          "ConceptualProperty": "ma_bn"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Mã BN": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dwh_fact_kham.ten_bn": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dwh fact_kham",
+			          "ConceptualProperty": "ten_bn"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Bệnh nhân": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

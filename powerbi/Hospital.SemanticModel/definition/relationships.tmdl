@@ -1,0 +1,49 @@
+relationship 3fd440a0-d939-4a84-8f7b-737d6772565e
+	fromColumn: 'dwh dim_benh_nhan'.dia_ly_key
+	toColumn: 'dwh dim_dia_ly'.dia_ly_key
+
+	annotation PBI_IsFromSource = FS
+
+relationship 07a3c51c-f3c9-4bf2-aa91-6a3bb953d821
+	fromColumn: 'dwh fact_ban_hang'.kho_key
+	toColumn: 'dwh dim_kho'.kho_key
+
+	annotation PBI_IsFromSource = FS
+
+relationship dd5eb3e2-fafd-4664-97bd-7ee840866f55
+	fromColumn: 'dwh fact_ban_hang'.date_key
+	toColumn: 'dwh dim_ngay'.date_key
+
+	annotation PBI_IsFromSource = FS
+
+relationship 0db22ab5-8235-4f3a-8a7c-10cbcb6cb73c
+	fromColumn: 'dwh fact_ban_hang'.ma_hang
+	toColumn: 'dwh dim_san_pham'.ma_hang
+
+	annotation PBI_IsFromSource = FS
+
+relationship f7c6c7f3-5532-fe28-96fa-68f9cf03ecd0
+	fromColumn: 'dwh fact_kham'.ma_bn
+	toColumn: 'dwh dim_benh_nhan'.ma_bn
+
+relationship 7c023686-d78a-6ae3-de93-9acb46961c9b
+	isActive: false
+	fromColumn: 'dwh fact_kham'.dia_ly_key
+	toColumn: 'dwh dim_dia_ly'.dia_ly_key
+
+relationship 942e4f09-b6e8-8e42-0553-35dc3dc8470c
+	fromColumn: 'dwh fact_kham'.ma_cd
+	toColumn: 'dwh dim_chan_doan'.ma_cd
+
+relationship 8df9abf8-9217-d83d-b846-bd3832955f40
+	fromColumn: 'dwh fact_kham'.dich_vu_key
+	toColumn: 'dwh dim_dich_vu'.dich_vu_key
+
+relationship 405a863f-7c09-ac15-d879-6f020819f103
+	fromColumn: 'dwh fact_kham'.date_key
+	toColumn: 'dwh dim_ngay'.date_key
+
+relationship 764f56fc-3692-6ec8-4069-cda7bcbd0c41
+	fromColumn: 'dwh fact_kham'.nguon_key
+	toColumn: 'dwh dim_nguon_gioi_thieu'.nguon_key
+

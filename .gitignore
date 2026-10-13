@@ -1,0 +1,20 @@
+# secrets / local config
+etl/config.py
+.env
+
+# patient data & exports - NEVER commit
+*.xlsx
+*.xls
+*.csv
+data/
+etl/logs/
+
+# Power BI local cache (contains imported data)
+**/.pbi/
+*.abf
+*.pbix
+
+# python
+__pycache__/
+venv/
+.venv/

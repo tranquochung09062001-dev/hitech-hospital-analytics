@@ -1,0 +1,48 @@
+table 'dwh dim_dia_ly'
+	lineageTag: fba24f08-d98a-43f6-ae9d-2f8007e33555
+
+	column dia_ly_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a4fc377-7f7b-49af-935c-6934d3d2955a
+		summarizeBy: none
+		sourceColumn: dia_ly_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column phuong_xa
+		dataType: string
+		lineageTag: 09425b38-c31d-4ff7-aa7d-d8ceb78f3624
+		summarizeBy: none
+		sourceColumn: phuong_xa
+
+		annotation SummarizationSetBy = Automatic
+
+	column tinh_tp
+		dataType: string
+		lineageTag: 6867b262-43ef-439c-ae45-7e0250dc0938
+		summarizeBy: none
+		sourceColumn: tinh_tp
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4b576259-6c68-48cf-b430-b52794a8b7d2
+		summarizeBy: none
+		sourceColumn: load_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dwh dim_dia_ly' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "Hitech Hospital"),
+				    dwh_dim_dia_ly = Source{[Schema="dwh",Item="dim_dia_ly"]}[Data]
+				in
+				    dwh_dim_dia_ly
+
+	annotation PBI_ResultType = Table
+

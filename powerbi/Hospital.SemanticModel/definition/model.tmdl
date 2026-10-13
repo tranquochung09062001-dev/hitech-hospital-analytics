@@ -1,0 +1,30 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["dwh dim_benh_nhan","dwh dim_chan_doan","dwh dim_dia_ly","dwh dim_dich_vu","dwh dim_kho","dwh dim_ngay","dwh dim_nguon_gioi_thieu","dwh dim_san_pham","dwh fact_ban_hang","dwh fact_kham"]
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
+
+ref table 'dwh dim_benh_nhan'
+ref table 'dwh dim_chan_doan'
+ref table 'dwh dim_dia_ly'
+ref table 'dwh dim_dich_vu'
+ref table 'dwh dim_kho'
+ref table 'dwh dim_ngay'
+ref table 'dwh dim_nguon_gioi_thieu'
+ref table 'dwh dim_san_pham'
+ref table 'dwh fact_ban_hang'
+ref table 'dwh fact_kham'
+ref table _Measures
+ref table 'Chế độ top'
+ref table 'Chọn nguồn'
+
+ref cultureInfo en-US
+

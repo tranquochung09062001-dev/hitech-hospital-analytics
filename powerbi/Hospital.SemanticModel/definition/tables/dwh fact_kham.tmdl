@@ -1,0 +1,293 @@
+table 'dwh fact_kham'
+	lineageTag: c397f090-676b-458f-af04-ad2b2976f3ea
+
+	column fact_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1fc31016-3b09-4dc1-9176-7a71b9d81c45
+		summarizeBy: sum
+		sourceColumn: fact_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ma_kcb
+		dataType: int64
+		formatString: 0
+		lineageTag: b61687c9-c4e3-43e5-ac6f-bfc5edde8101
+		summarizeBy: sum
+		sourceColumn: ma_kcb
+
+		annotation SummarizationSetBy = Automatic
+
+	column ma_bn
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f753f55-87ef-4735-89d2-49f23615b99e
+		summarizeBy: none
+		sourceColumn: ma_bn
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2bb9ad22-c5fe-46bb-94ad-fc07877f51dc
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ngay_dang_ky
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d6804f1f-3eb5-425b-97c7-ac5aea53e048
+		summarizeBy: none
+		sourceColumn: ngay_dang_ky
+
+		annotation SummarizationSetBy = Automatic
+
+	column dich_vu_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9df7b5ff-82bd-447a-9784-1f15afb91d04
+		summarizeBy: none
+		sourceColumn: dich_vu_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ma_cd
+		dataType: string
+		lineageTag: 17ea87c3-e155-415d-93a5-e5f5c20566f0
+		summarizeBy: none
+		sourceColumn: ma_cd
+
+		annotation SummarizationSetBy = Automatic
+
+	column nguon_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e3396cc3-7c51-4ebd-a9aa-3fc351dec018
+		summarizeBy: none
+		sourceColumn: nguon_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_ly_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 93858bde-5850-477e-ac43-dc6e3adf7488
+		summarizeBy: sum
+		sourceColumn: dia_ly_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column tuoi
+		dataType: int64
+		formatString: 0
+		lineageTag: 47c8d363-f534-4d2e-af35-dc9da30a6112
+		summarizeBy: none
+		sourceColumn: tuoi
+
+		annotation SummarizationSetBy = Automatic
+
+	column nhom_tuoi
+		dataType: string
+		lineageTag: 58314d91-c3d6-4f05-b340-0081c4137cbf
+		summarizeBy: none
+		sourceColumn: nhom_tuoi
+		sortByColumn: nhom_tuoi_sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column doanh_thu
+		dataType: double
+		lineageTag: b8887545-c656-4009-aa27-1ef52938c3de
+		summarizeBy: sum
+		sourceColumn: doanh_thu
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column giam_gia
+		dataType: double
+		lineageTag: e4c603b7-f360-4f9c-8ba8-24f467e0503d
+		summarizeBy: sum
+		sourceColumn: giam_gia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column doanh_thu_thuan
+		dataType: double
+		lineageTag: d401bcb0-6457-45c3-9977-ffb4df84b932
+		summarizeBy: sum
+		sourceColumn: doanh_thu_thuan
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tien_bhyt
+		dataType: double
+		lineageTag: fe73be49-8335-46cc-839b-b34b037fb7c9
+		summarizeBy: sum
+		sourceColumn: tien_bhyt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column bn_chi_tra
+		dataType: double
+		lineageTag: b876ec5f-6e63-4090-a2ad-bfbf81f7005a
+		summarizeBy: sum
+		sourceColumn: bn_chi_tra
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ghi_chu
+		dataType: string
+		lineageTag: ac2522a8-a1fb-4986-a427-22ebdf652a1b
+		summarizeBy: none
+		sourceColumn: ghi_chu
+
+		annotation SummarizationSetBy = Automatic
+
+	column tu_van_dieu_tri
+		dataType: string
+		lineageTag: 2a5fe7ca-0e34-47e8-bc78-5f7fc56c6547
+		summarizeBy: none
+		sourceColumn: tu_van_dieu_tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column nguoi_gioi_thieu
+		dataType: string
+		lineageTag: 26c68ede-302d-46d6-8e2c-a435d592e058
+		summarizeBy: none
+		sourceColumn: nguoi_gioi_thieu
+
+		annotation SummarizationSetBy = Automatic
+
+	column ghi_chu_cd
+		dataType: string
+		lineageTag: 550cfead-1267-429e-ab11-96605bd53508
+		summarizeBy: none
+		sourceColumn: ghi_chu_cd
+
+		annotation SummarizationSetBy = Automatic
+
+	column stt_nguon
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9e40a4b1-7397-452b-bd19-35b102dd4cf6
+		summarizeBy: sum
+		sourceColumn: stt_nguon
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_date
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 5cfcdf41-091f-4ac7-89d5-2dbd380a5d9a
+		summarizeBy: none
+		sourceColumn: load_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column doi_tuong
+		dataType: string
+		lineageTag: a457c112-279b-4592-8f5e-848144e22e33
+		summarizeBy: none
+		sourceColumn: doi_tuong
+
+		annotation SummarizationSetBy = Automatic
+
+	column muc_huong_bhyt
+		dataType: int64
+		formatString: 0
+		lineageTag: 386681f9-e313-405d-b751-d3d81b4ec242
+		summarizeBy: sum
+		sourceColumn: muc_huong_bhyt
+
+		annotation SummarizationSetBy = Automatic
+
+	column nhom_tuoi_sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f9ab08a5-09da-42ad-8c4c-fd6f025c4cd1
+		summarizeBy: none
+		sourceColumn: nhom_tuoi_sort
+
+	/// Nội trú = lượt khám (mã KCB) có dịch vụ nhóm Phẫu thuật
+	column loai_dieu_tri =
+			VAR pt = CALCULATETABLE(VALUES('dwh dim_dich_vu'[dich_vu_key]), ALL('dwh dim_dich_vu'), 'dwh dim_dich_vu'[nhom_dich_vu] = "Phẫu thuật")
+			RETURN IF(CALCULATE(COUNTROWS('dwh fact_kham'), ALLEXCEPT('dwh fact_kham', 'dwh fact_kham'[ma_kcb]), 'dwh fact_kham'[dich_vu_key] IN pt) > 0, "Nội trú", "Ngoại trú")
+		dataType: string
+		lineageTag: c84ff279-7370-4dc4-9c45-bb1fe16ddf5a
+		summarizeBy: none
+
+	column lan_kham =
+			VAR dk = 'dwh fact_kham'[date_key]
+			RETURN CALCULATE(DISTINCTCOUNT('dwh fact_kham'[date_key]), ALLEXCEPT('dwh fact_kham', 'dwh fact_kham'[ma_bn]), 'dwh fact_kham'[date_key] <= dk)
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f8e115d-891e-49ab-9aa2-72f5b2561e90
+		summarizeBy: none
+
+	column la_ten_gioi_thieu =
+			VAR s = TRIM('dwh fact_kham'[nguoi_gioi_thieu])
+			VAR p = SUBSTITUTE(SUBSTITUTE(s, "|", ""), " ", "|")
+			VAR n = PATHLENGTH(p)
+			VAR lowerWords = COUNTROWS(FILTER(GENERATESERIES(1, n), VAR w = PATHITEM(p, [Value]) VAR c = LEFT(w, 1) RETURN EXACT(c, LOWER(c)) && NOT EXACT(c, UPPER(c))))
+			VAR hasDigit = SUMX(GENERATESERIES(0, 9), IF(CONTAINSSTRING(s, FORMAT([Value], "0")), 1)) > 0
+			VAR isCTV = SEARCH("CTV", s, 1, 0) > 0
+			RETURN IF(LEN(s) > 0 && (isCTV || (n >= 2 && n <= 6 && lowerWords = 0 && NOT EXACT(s, UPPER(s)) && NOT hasDigit)), "Có", "Không")
+		dataType: string
+		isHidden
+		lineageTag: a679c06e-ee2d-4767-a2bc-1b4b2ff05efa
+		summarizeBy: none
+
+	column ma_kcb_txt = FORMAT('dwh fact_kham'[ma_kcb], "0")
+		dataType: string
+		lineageTag: 6f15ca75-69f5-47ea-b05b-cec450db8b85
+		summarizeBy: none
+
+	column ngay_kham = DATE(YEAR('dwh fact_kham'[ngay_dang_ky]), MONTH('dwh fact_kham'[ngay_dang_ky]), DAY('dwh fact_kham'[ngay_dang_ky]))
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		lineageTag: 1cfda65e-fcdd-4ea5-be65-2faac835b777
+		summarizeBy: none
+
+	column ten_bn = RELATED('dwh dim_benh_nhan'[ho_ten])
+		dataType: string
+		lineageTag: 2b6a3ac4-6d28-4cb2-a9de-41e12ee08bc8
+		summarizeBy: none
+
+	partition 'dwh fact_kham' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "Hitech Hospital"),
+				    dwh_fact_kham = Source{[Schema="dwh",Item="fact_kham"]}[Data],
+				    ThemSort = Table.AddColumn(dwh_fact_kham, "nhom_tuoi_sort", each
+				        let g = [nhom_tuoi] in
+				        if g = "0-5" then 1 else if g = "6-15" then 2 else if g = "16-25" then 3
+				        else if g = "26-40" then 4 else if g = "41-60" then 5 else if g = "60+" then 6 else 7, Int64.Type)
+				in
+				    ThemSort
+
+	annotation PBI_ResultType = Table
+

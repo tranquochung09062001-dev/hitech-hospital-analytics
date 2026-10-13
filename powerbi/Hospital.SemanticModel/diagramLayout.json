@@ -1,0 +1,152 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 285
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 50,
+            "y": 404.94209843726003
+          },
+          "nodeIndex": "dwh dim_benh_nhan",
+          "nodeLineageTag": "2b91df7d-a3e0-488b-a3ab-d6e77a815905",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 303.12395058080835,
+            "y": 149.63916574023358
+          },
+          "nodeIndex": "dwh dim_chan_doan",
+          "nodeLineageTag": "518fef3e-8f2b-4cfb-b5b2-4924c9527e0e",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 414.15557165776556,
+            "y": 633.7224748561448
+          },
+          "nodeIndex": "dwh dim_dia_ly",
+          "nodeLineageTag": "fba24f08-d98a-43f6-ae9d-2f8007e33555",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 882.57244161636686,
+            "y": 21.515081762172713
+          },
+          "nodeIndex": "dwh dim_dich_vu",
+          "nodeLineageTag": "d4727a2a-0905-49e0-9c66-95aed5af8c28",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1475.0513762605572,
+            "y": 707.96069433352136
+          },
+          "nodeIndex": "dwh dim_kho",
+          "nodeLineageTag": "d350627c-c5af-4c38-aaee-5339712e4b26",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 847.16181512069465,
+            "y": 629.89704427547053
+          },
+          "nodeIndex": "dwh dim_ngay",
+          "nodeLineageTag": "03421a48-0380-4747-9ec2-59122aa3c851",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 593.004591741714,
+            "y": -50
+          },
+          "nodeIndex": "dwh dim_nguon_gioi_thieu",
+          "nodeLineageTag": "256c0b9a-2fe0-430c-b3a1-665b40cb7942",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1278.4849852754435,
+            "y": 939.67621051714491
+          },
+          "nodeIndex": "dwh dim_san_pham",
+          "nodeLineageTag": "6537de0e-597d-40d3-8706-19348d38c8f6",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1135.4577724939645,
+            "y": 582.69452886018883
+          },
+          "nodeIndex": "dwh fact_ban_hang",
+          "nodeLineageTag": "90aca879-7413-4e9f-94dc-f933eba6384b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1709.0513762605572,
+            "y": 480.83810525857245
+          },
+          "nodeIndex": "dwh fact_kham",
+          "nodeLineageTag": "c397f090-676b-458f-af04-ad2b2976f3ea",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

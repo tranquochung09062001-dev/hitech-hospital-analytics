@@ -1,0 +1,53 @@
+table 'dwh dim_nguon_gioi_thieu'
+	lineageTag: 256c0b9a-2fe0-430c-b3a1-665b40cb7942
+
+	column nguon_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 5805eb99-4b39-4e89-b8d1-c064ae20f4a0
+		summarizeBy: none
+		sourceColumn: nguon_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column nguon_gioi_thieu
+		dataType: string
+		lineageTag: dbd81ac2-ce09-4b07-898a-f3ea54633cdf
+		summarizeBy: none
+		sourceColumn: nguon_gioi_thieu
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 57163676-74c6-4d53-9bf0-92fa4d190200
+		summarizeBy: none
+		sourceColumn: load_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column nhom_nguon =
+			VAR n = 'dwh dim_nguon_gioi_thieu'[nguon_gioi_thieu]
+			RETURN SWITCH(TRUE(),
+			  n IN {"MKT online", "Chạy quảng cáo MKT", "Chương trình MKT"}, "Marketing",
+			  n = "Người nhà NV", "Người nhà NV",
+			  n = "Bệnh nhân giới thiệu", "Người quen (BN giới thiệu)",
+			  n IN {"CTV kinh doanh", "CTV VIP", "Kinh doanh"}, "CTV / Kinh doanh",
+			  n = "Tự đến", "Tự đến",
+			  "Khác")
+		dataType: string
+		lineageTag: ac38bf1e-9309-4c9d-9d64-a4c2de39e596
+		summarizeBy: none
+
+	partition 'dwh dim_nguon_gioi_thieu' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "Hitech Hospital"),
+				    dwh_dim_nguon_gioi_thieu = Source{[Schema="dwh",Item="dim_nguon_gioi_thieu"]}[Data]
+				in
+				    dwh_dim_nguon_gioi_thieu
+
+	annotation PBI_ResultType = Table
+
